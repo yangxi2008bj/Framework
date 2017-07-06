@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lachesis.windranger.ldm.dao.LdmEqpLogMapperExt" >
+	<select id="getLdmLog" resultType="com.lachesis.windranger.ldm.dbmodel.LdmEqpLog" parameterType="com.lachesis.windranger.ldm.dbmodel.LdmEqpLog" >
+    select * from ldm_eqp_log where 1=1
+    <if test="eqpMac != null and eqpMac != ''">
+		AND eqp_mac='${eqpMac}'
+	</if>
+    <if test="eqpSn != null and eqpSn != ''">
+		AND eqp_sn='${eqpSn}'
+	</if>
+  </select>
+</mapper>

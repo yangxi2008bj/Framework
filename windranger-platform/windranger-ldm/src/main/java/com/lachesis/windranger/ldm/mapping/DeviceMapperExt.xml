@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lachesis.windranger.ldm.dao.DeviceMapperExt" >
+  <select id="selectDeviceData" resultType="com.lachesis.windranger.ldm.vo.PbimsBedEarlySenseVO" >
+    select device.eqp_mac, eqp_ip, hr, rr, movement_level, turn_countup, in_bed, alert_message, ldm_eqp_patient_reading_rt.update_time
+    from device, ldm_eqp_patient_reading_rt
+    where device.eqp_mac = ldm_eqp_patient_reading_rt.eqp_mac
+  </select>
+</mapper>

@@ -1,0 +1,341 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lachesis.windranger.ldm.dao.LdmServiceMapper" >
+  <resultMap id="BaseResultMap" type="com.lachesis.windranger.ldm.dbmodel.LdmService" >
+    <id column="seq_id" property="seqId" jdbcType="BIGINT" />
+    <result column="service_code" property="serviceCode" jdbcType="VARCHAR" />
+    <result column="deploy_ip" property="deployIp" jdbcType="INTEGER" />
+    <result column="deploy_port" property="deployPort" jdbcType="INTEGER" />
+    <result column="lastes_start_date" property="lastesStartDate" jdbcType="TIMESTAMP" />
+    <result column="restart_times" property="restartTimes" jdbcType="INTEGER" />
+    <result column="total_run_time" property="totalRunTime" jdbcType="REAL" />
+    <result column="jvm_memory" property="jvmMemory" jdbcType="VARCHAR" />
+    <result column="jvm_memory_use_rate" property="jvmMemoryUseRate" jdbcType="REAL" />
+    <result column="cur_req_times" property="curReqTimes" jdbcType="INTEGER" />
+    <result column="cur_req_ave_resp_time" property="curReqAveRespTime" jdbcType="REAL" />
+    <result column="cur_max_concurrency" property="curMaxConcurrency" jdbcType="INTEGER" />
+    <result column="total_req_times" property="totalReqTimes" jdbcType="INTEGER" />
+    <result column="total_req_ave_resp_time" property="totalReqAveRespTime" jdbcType="REAL" />
+    <result column="total_max_concurrency" property="totalMaxConcurrency" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="create_person" property="createPerson" jdbcType="VARCHAR" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="update_person" property="updatePerson" jdbcType="VARCHAR" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from ldm_service
+    where seq_id = #{seqId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.lachesis.windranger.ldm.dbmodel.LdmService" >
+    insert into ldm_service (seq_id, service_code, deploy_ip, 
+      deploy_port, lastes_start_date, restart_times, 
+      total_run_time, jvm_memory, jvm_memory_use_rate, 
+      cur_req_times, cur_req_ave_resp_time, cur_max_concurrency, 
+      total_req_times, total_req_ave_resp_time, total_max_concurrency, 
+      create_time, create_person, update_time, 
+      update_person)
+    values (#{seqId,jdbcType=BIGINT}, #{serviceCode,jdbcType=VARCHAR}, #{deployIp,jdbcType=INTEGER}, 
+      #{deployPort,jdbcType=INTEGER}, #{lastesStartDate,jdbcType=TIMESTAMP}, #{restartTimes,jdbcType=INTEGER}, 
+      #{totalRunTime,jdbcType=REAL}, #{jvmMemory,jdbcType=VARCHAR}, #{jvmMemoryUseRate,jdbcType=REAL}, 
+      #{curReqTimes,jdbcType=INTEGER}, #{curReqAveRespTime,jdbcType=REAL}, #{curMaxConcurrency,jdbcType=INTEGER}, 
+      #{totalReqTimes,jdbcType=INTEGER}, #{totalReqAveRespTime,jdbcType=REAL}, #{totalMaxConcurrency,jdbcType=INTEGER}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{createPerson,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{updatePerson,jdbcType=VARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.lachesis.windranger.ldm.dbmodel.LdmService" >
+    update ldm_service
+    set service_code = #{serviceCode,jdbcType=VARCHAR},
+      deploy_ip = #{deployIp,jdbcType=INTEGER},
+      deploy_port = #{deployPort,jdbcType=INTEGER},
+      lastes_start_date = #{lastesStartDate,jdbcType=TIMESTAMP},
+      restart_times = #{restartTimes,jdbcType=INTEGER},
+      total_run_time = #{totalRunTime,jdbcType=REAL},
+      jvm_memory = #{jvmMemory,jdbcType=VARCHAR},
+      jvm_memory_use_rate = #{jvmMemoryUseRate,jdbcType=REAL},
+      cur_req_times = #{curReqTimes,jdbcType=INTEGER},
+      cur_req_ave_resp_time = #{curReqAveRespTime,jdbcType=REAL},
+      cur_max_concurrency = #{curMaxConcurrency,jdbcType=INTEGER},
+      total_req_times = #{totalReqTimes,jdbcType=INTEGER},
+      total_req_ave_resp_time = #{totalReqAveRespTime,jdbcType=REAL},
+      total_max_concurrency = #{totalMaxConcurrency,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      create_person = #{createPerson,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      update_person = #{updatePerson,jdbcType=VARCHAR}
+    where seq_id = #{seqId,jdbcType=BIGINT}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select seq_id, service_code, deploy_ip, deploy_port, lastes_start_date, restart_times, 
+    total_run_time, jvm_memory, jvm_memory_use_rate, cur_req_times, cur_req_ave_resp_time, 
+    cur_max_concurrency, total_req_times, total_req_ave_resp_time, total_max_concurrency, 
+    create_time, create_person, update_time, update_person
+    from ldm_service
+    where seq_id = #{seqId,jdbcType=BIGINT}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select seq_id, service_code, deploy_ip, deploy_port, lastes_start_date, restart_times, 
+    total_run_time, jvm_memory, jvm_memory_use_rate, cur_req_times, cur_req_ave_resp_time, 
+    cur_max_concurrency, total_req_times, total_req_ave_resp_time, total_max_concurrency, 
+    create_time, create_person, update_time, update_person
+    from ldm_service
+  </select>
+  <delete id="removeKeysWithSession" parameterType="java.util.List" >
+    delete from ldm_service where seq_id IN <foreach close=")" collection="list" index="index" item="item" open="(" separator=","> #{item} </foreach>
+  </delete>
+  <delete id="deleteByBean" parameterType="java.lang.Long" >
+    delete from ldm_service where 1=1 
+    <if test="seqId!=null" >
+      and seq_id = #{seqId,jdbcType=BIGINT}
+    </if>
+    <if test="serviceCode!=null" >
+      and service_code = #{serviceCode,jdbcType=VARCHAR}
+    </if>
+    <if test="deployIp!=null" >
+      and deploy_ip = #{deployIp,jdbcType=INTEGER}
+    </if>
+    <if test="deployPort!=null" >
+      and deploy_port = #{deployPort,jdbcType=INTEGER}
+    </if>
+    <if test="lastesStartDate!=null" >
+      and lastes_start_date = #{lastesStartDate,jdbcType=TIMESTAMP}
+    </if>
+    <if test="restartTimes!=null" >
+      and restart_times = #{restartTimes,jdbcType=INTEGER}
+    </if>
+    <if test="totalRunTime!=null" >
+      and total_run_time = #{totalRunTime,jdbcType=REAL}
+    </if>
+    <if test="jvmMemory!=null" >
+      and jvm_memory = #{jvmMemory,jdbcType=VARCHAR}
+    </if>
+    <if test="jvmMemoryUseRate!=null" >
+      and jvm_memory_use_rate = #{jvmMemoryUseRate,jdbcType=REAL}
+    </if>
+    <if test="curReqTimes!=null" >
+      and cur_req_times = #{curReqTimes,jdbcType=INTEGER}
+    </if>
+    <if test="curReqAveRespTime!=null" >
+      and cur_req_ave_resp_time = #{curReqAveRespTime,jdbcType=REAL}
+    </if>
+    <if test="curMaxConcurrency!=null" >
+      and cur_max_concurrency = #{curMaxConcurrency,jdbcType=INTEGER}
+    </if>
+    <if test="totalReqTimes!=null" >
+      and total_req_times = #{totalReqTimes,jdbcType=INTEGER}
+    </if>
+    <if test="totalReqAveRespTime!=null" >
+      and total_req_ave_resp_time = #{totalReqAveRespTime,jdbcType=REAL}
+    </if>
+    <if test="totalMaxConcurrency!=null" >
+      and total_max_concurrency = #{totalMaxConcurrency,jdbcType=INTEGER}
+    </if>
+    <if test="createTime!=null" >
+      and create_time = #{createTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="createPerson!=null" >
+      and create_person = #{createPerson,jdbcType=VARCHAR}
+    </if>
+    <if test="updateTime!=null" >
+      and update_time = #{updateTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="updatePerson!=null" >
+      and update_person = #{updatePerson,jdbcType=VARCHAR}
+    </if>
+  </delete>
+  <insert parameterType="com.lachesis.windranger.ldm.dbmodel.LdmService" id="insertAndReturnKey" keyProperty="seqId" useGeneratedKeys="true" >
+    insert into ldm_service (seq_id, service_code, deploy_ip, 
+      deploy_port, lastes_start_date, restart_times, 
+      total_run_time, jvm_memory, jvm_memory_use_rate, 
+      cur_req_times, cur_req_ave_resp_time, cur_max_concurrency, 
+      total_req_times, total_req_ave_resp_time, total_max_concurrency, 
+      create_time, create_person, update_time, 
+      update_person)
+    values (#{seqId,jdbcType=BIGINT}, #{serviceCode,jdbcType=VARCHAR}, #{deployIp,jdbcType=INTEGER}, 
+      #{deployPort,jdbcType=INTEGER}, #{lastesStartDate,jdbcType=TIMESTAMP}, #{restartTimes,jdbcType=INTEGER}, 
+      #{totalRunTime,jdbcType=REAL}, #{jvmMemory,jdbcType=VARCHAR}, #{jvmMemoryUseRate,jdbcType=REAL}, 
+      #{curReqTimes,jdbcType=INTEGER}, #{curReqAveRespTime,jdbcType=REAL}, #{curMaxConcurrency,jdbcType=INTEGER}, 
+      #{totalReqTimes,jdbcType=INTEGER}, #{totalReqAveRespTime,jdbcType=REAL}, #{totalMaxConcurrency,jdbcType=INTEGER}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{createPerson,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{updatePerson,jdbcType=VARCHAR})
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lachesis.windranger.ldm.dbmodel.LdmService" >
+    update ldm_service set
+    <trim suffixOverrides="," >
+      <if test="serviceCode != null" >
+        service_code = #{serviceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="deployIp != null" >
+        deploy_ip = #{deployIp,jdbcType=INTEGER},
+      </if>
+      <if test="deployPort != null" >
+        deploy_port = #{deployPort,jdbcType=INTEGER},
+      </if>
+      <if test="lastesStartDate != null" >
+        lastes_start_date = #{lastesStartDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="restartTimes != null" >
+        restart_times = #{restartTimes,jdbcType=INTEGER},
+      </if>
+      <if test="totalRunTime != null" >
+        total_run_time = #{totalRunTime,jdbcType=REAL},
+      </if>
+      <if test="jvmMemory != null" >
+        jvm_memory = #{jvmMemory,jdbcType=VARCHAR},
+      </if>
+      <if test="jvmMemoryUseRate != null" >
+        jvm_memory_use_rate = #{jvmMemoryUseRate,jdbcType=REAL},
+      </if>
+      <if test="curReqTimes != null" >
+        cur_req_times = #{curReqTimes,jdbcType=INTEGER},
+      </if>
+      <if test="curReqAveRespTime != null" >
+        cur_req_ave_resp_time = #{curReqAveRespTime,jdbcType=REAL},
+      </if>
+      <if test="curMaxConcurrency != null" >
+        cur_max_concurrency = #{curMaxConcurrency,jdbcType=INTEGER},
+      </if>
+      <if test="totalReqTimes != null" >
+        total_req_times = #{totalReqTimes,jdbcType=INTEGER},
+      </if>
+      <if test="totalReqAveRespTime != null" >
+        total_req_ave_resp_time = #{totalReqAveRespTime,jdbcType=REAL},
+      </if>
+      <if test="totalMaxConcurrency != null" >
+        total_max_concurrency = #{totalMaxConcurrency,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createPerson != null" >
+        create_person = #{createPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatePerson != null" >
+        update_person = #{updatePerson,jdbcType=VARCHAR}
+      </if>
+    </trim>
+     where seq_id = #{seqId,jdbcType=BIGINT}
+  </update>
+  <select id="selectByBean" resultMap="BaseResultMap" parameterType="com.lachesis.windranger.ldm.dbmodel.LdmService" >
+    select * from ldm_service where 1=1 
+    <if test="seqId!=null" >
+      and seq_id = #{seqId,jdbcType=BIGINT}
+    </if>
+    <if test="serviceCode!=null" >
+      and service_code = #{serviceCode,jdbcType=VARCHAR}
+    </if>
+    <if test="deployIp!=null" >
+      and deploy_ip = #{deployIp,jdbcType=INTEGER}
+    </if>
+    <if test="deployPort!=null" >
+      and deploy_port = #{deployPort,jdbcType=INTEGER}
+    </if>
+    <if test="lastesStartDate!=null" >
+      and lastes_start_date = #{lastesStartDate,jdbcType=TIMESTAMP}
+    </if>
+    <if test="restartTimes!=null" >
+      and restart_times = #{restartTimes,jdbcType=INTEGER}
+    </if>
+    <if test="totalRunTime!=null" >
+      and total_run_time = #{totalRunTime,jdbcType=REAL}
+    </if>
+    <if test="jvmMemory!=null" >
+      and jvm_memory = #{jvmMemory,jdbcType=VARCHAR}
+    </if>
+    <if test="jvmMemoryUseRate!=null" >
+      and jvm_memory_use_rate = #{jvmMemoryUseRate,jdbcType=REAL}
+    </if>
+    <if test="curReqTimes!=null" >
+      and cur_req_times = #{curReqTimes,jdbcType=INTEGER}
+    </if>
+    <if test="curReqAveRespTime!=null" >
+      and cur_req_ave_resp_time = #{curReqAveRespTime,jdbcType=REAL}
+    </if>
+    <if test="curMaxConcurrency!=null" >
+      and cur_max_concurrency = #{curMaxConcurrency,jdbcType=INTEGER}
+    </if>
+    <if test="totalReqTimes!=null" >
+      and total_req_times = #{totalReqTimes,jdbcType=INTEGER}
+    </if>
+    <if test="totalReqAveRespTime!=null" >
+      and total_req_ave_resp_time = #{totalReqAveRespTime,jdbcType=REAL}
+    </if>
+    <if test="totalMaxConcurrency!=null" >
+      and total_max_concurrency = #{totalMaxConcurrency,jdbcType=INTEGER}
+    </if>
+    <if test="createTime!=null" >
+      and create_time = #{createTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="createPerson!=null" >
+      and create_person = #{createPerson,jdbcType=VARCHAR}
+    </if>
+    <if test="updateTime!=null" >
+      and update_time = #{updateTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="updatePerson!=null" >
+      and update_person = #{updatePerson,jdbcType=VARCHAR}
+    </if>
+  </select>
+  <select id="countByBean" resultType="int" parameterType="com.lachesis.windranger.ldm.dbmodel.LdmService" >
+    select count(0) from ldm_service where 1=1 
+    <if test="seqId!=null" >
+      and seq_id = #{seqId,jdbcType=BIGINT}
+    </if>
+    <if test="serviceCode!=null" >
+      and service_code = #{serviceCode,jdbcType=VARCHAR}
+    </if>
+    <if test="deployIp!=null" >
+      and deploy_ip = #{deployIp,jdbcType=INTEGER}
+    </if>
+    <if test="deployPort!=null" >
+      and deploy_port = #{deployPort,jdbcType=INTEGER}
+    </if>
+    <if test="lastesStartDate!=null" >
+      and lastes_start_date = #{lastesStartDate,jdbcType=TIMESTAMP}
+    </if>
+    <if test="restartTimes!=null" >
+      and restart_times = #{restartTimes,jdbcType=INTEGER}
+    </if>
+    <if test="totalRunTime!=null" >
+      and total_run_time = #{totalRunTime,jdbcType=REAL}
+    </if>
+    <if test="jvmMemory!=null" >
+      and jvm_memory = #{jvmMemory,jdbcType=VARCHAR}
+    </if>
+    <if test="jvmMemoryUseRate!=null" >
+      and jvm_memory_use_rate = #{jvmMemoryUseRate,jdbcType=REAL}
+    </if>
+    <if test="curReqTimes!=null" >
+      and cur_req_times = #{curReqTimes,jdbcType=INTEGER}
+    </if>
+    <if test="curReqAveRespTime!=null" >
+      and cur_req_ave_resp_time = #{curReqAveRespTime,jdbcType=REAL}
+    </if>
+    <if test="curMaxConcurrency!=null" >
+      and cur_max_concurrency = #{curMaxConcurrency,jdbcType=INTEGER}
+    </if>
+    <if test="totalReqTimes!=null" >
+      and total_req_times = #{totalReqTimes,jdbcType=INTEGER}
+    </if>
+    <if test="totalReqAveRespTime!=null" >
+      and total_req_ave_resp_time = #{totalReqAveRespTime,jdbcType=REAL}
+    </if>
+    <if test="totalMaxConcurrency!=null" >
+      and total_max_concurrency = #{totalMaxConcurrency,jdbcType=INTEGER}
+    </if>
+    <if test="createTime!=null" >
+      and create_time = #{createTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="createPerson!=null" >
+      and create_person = #{createPerson,jdbcType=VARCHAR}
+    </if>
+    <if test="updateTime!=null" >
+      and update_time = #{updateTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="updatePerson!=null" >
+      and update_person = #{updatePerson,jdbcType=VARCHAR}
+    </if>
+  </select>
+</mapper>

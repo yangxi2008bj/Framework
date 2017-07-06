@@ -1,0 +1,115 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>com.lachesis.windranger</groupId>
+	<artifactId>windranger-platform</artifactId>
+	<version>0.1.0-SNAPSHOT</version>
+  </parent>
+  <artifactId>windranger-ldm</artifactId>
+  <name>windranger-ldm</name>
+  <url>http://maven.apache.org</url>
+  <packaging>jar</packaging>
+
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+
+  <dependencies>
+  <!-- windranger -->
+	<dependency>
+		<groupId>com.lachesis.windranger</groupId>
+		<artifactId>windranger-common</artifactId>
+		<version>${windranger.version}</version>
+	</dependency>
+	
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>3.8.1</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+    	<groupId>org.json</groupId>
+    	<artifactId>json</artifactId>
+    	<version>20160810</version>
+	</dependency>
+	<dependency>
+	    <groupId>net.sf.json-lib</groupId>
+	    <artifactId>json-lib</artifactId>
+	    <version>2.4</version>
+	    <classifier>jdk15</classifier>
+	</dependency>
+	<!-- https://mvnrepository.com/artifact/org.jdom/jdom -->
+	<dependency>
+	    <groupId>org.jdom</groupId>
+	    <artifactId>jdom</artifactId>
+	    <version>1.1.3</version>
+	</dependency>
+	<!-- https://mvnrepository.com/artifact/xom/xom -->
+	<dependency>
+	    <groupId>xom</groupId>
+	    <artifactId>xom</artifactId>
+	    <version>1.1</version>
+	</dependency>
+	<!-- https://mvnrepository.com/artifact/org.jdom/jdom -->
+	<dependency>
+	    <groupId>org.jdom</groupId>
+	    <artifactId>jdom</artifactId>
+	    <version>1.1.3</version>
+	</dependency>	
+  </dependencies>
+  
+  
+	<build>
+		<resources>
+			<resource>
+				<directory>src/main/java</directory>
+				<includes>
+					<include>**/*.properties</include>
+					<include>**/*.xml</include>
+				</includes>
+				<filtering>false</filtering>
+			</resource>
+		</resources>
+
+		<plugins>
+			<plugin>
+				<groupId>org.mybatis.generator</groupId>
+				<artifactId>mybatis-generator-maven-plugin</artifactId>
+				<version>1.3.2</version>
+				<configuration>
+					<verbose>true</verbose>
+					<overwrite>true</overwrite>
+				</configuration>
+
+				<dependencies>
+
+					<dependency>
+						<groupId>org.mybatis</groupId>
+						<artifactId>mybatis</artifactId>
+						<version>${mybatis.version}</version>
+					</dependency>
+					<dependency>
+						<groupId>org.mybatis.generator</groupId>
+						<artifactId>mybatis-generator-core</artifactId>
+						<version>1.3.2</version>
+					</dependency>
+					<dependency>
+						<groupId>mysql</groupId>
+						<artifactId>mysql-connector-java</artifactId>
+						<version>5.1.40</version>
+					</dependency>
+					<dependency>
+						<groupId>com.lachesis.windranger</groupId>
+						<artifactId>windranger-generator</artifactId>
+						<version>0.1.0-SNAPSHOT</version>
+					</dependency>
+				</dependencies>
+
+			</plugin>
+
+		</plugins>
+	</build>
+</project>

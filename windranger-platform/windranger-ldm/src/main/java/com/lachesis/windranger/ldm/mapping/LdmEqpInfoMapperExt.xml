@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lachesis.windranger.ldm.dao.LdmEqpInfoMapperExt">
+	<select id="getLdmEqpByLdmEqpInfo" resultType="com.lachesis.windranger.ldm.dbmodel.LdmEqpInfo"
+		parameterType="com.lachesis.windranger.ldm.dbmodel.LdmEqpInfo">
+		select seq_id, eqp_name, eqp_type, eqp_sn, eqp_model, eqp_submodel,
+		eqp_mac, eqp_belong,
+		eqp_mfrs, eqp_status, eqp_notes, create_time,
+		create_person, update_time,
+		update_person
+		from ldm_eqp_info
+		where 1 = 1
+		<if test="seqId != null and seqId != ''">
+			AND seq_id='${seqId}'
+		</if>
+		<if test="eqpSn != null and eqpSn != ''">
+			AND eqp_sn='${eqpSn}'
+		</if>
+		<if test="eqpMac != null and eqpMac != ''">
+			AND eqp_mac='${eqpMac}'
+		</if>
+		<if test="eqpType != null and eqpType != ''">
+			AND eqp_type='${eqpType}'
+		</if>
+		<if test="eqpBelong != null and eqpBelong != ''">
+			AND eqp_belong='${eqpBelong}'
+		</if>
+		<if test="eqpStatus != null and eqpStatus != ''">
+			AND eqp_status='${eqpStatus}'
+		</if>
+		<if test="eqpName != null and eqpName != ''">
+			AND ( eqp_name LIKE CONCAT('%', '${eqpName}','%' ) OR eqp_sn LIKE  CONCAT('%', '${eqpName}','%' ) OR eqp_mac LIKE CONCAT('%', '${eqpName}','%' ) ) 
+		</if>
+		order by eqp_type, eqp_model, eqp_name
+	</select>
+	<select id="getLdmEqpInfoExtByBean" resultType="com.lachesis.windranger.ldm.dbmodel.LdmEqpInfoExt"
+		parameterType="com.lachesis.windranger.ldm.dbmodel.LdmEqpInfoExt">
+		SELECT * FROM (
+		SELECT A.`seq_id`, A.`eqp_name`, A.`eqp_type`, A.`eqp_sn`, A.`eqp_model`, A.`eqp_submodel`, A.`eqp_mac`,
+		A.`eqp_belong`, A.`eqp_mfrs`, A.`eqp_notes`, B.`net_status`, B.`update_time`, C.`eqp_status` AS eqpErrorStatus
+		FROM ldm_eqp_info A LEFT JOIN ldm_eqp_conn B ON (A.`eqp_mac` = B.`eqp_mac` OR A.`eqp_sn` = B.`eqp_sn`) LEFT JOIN ldm_eqp_error C ON 
+        (A.`eqp_mac` = C.`eqp_mac` OR A.`eqp_sn` = C.`eqp_sn`) WHERE A.`eqp_status` = 10001
+		<if test="eqpSn != null and eqpSn != ''">
+			AND eqp_sn='${eqpSn}'
+		</if>
+		<if test="eqpMac != null and eqpMac != ''">
+			AND eqp_mac='${eqpMac}'
+		</if>
+		<if test="netStatus != null and netStatus != ''">
+			AND net_status='${netStatus}'
+		</if>
+		<if test="eqpType != null and eqpType != ''">
+			AND eqp_type='${eqpType}'
+		</if>
+		<if test="eqpBelong != null and eqpBelong != ''">
+			AND eqp_belong='${eqpBelong}'
+		</if>
+		<if test="eqpName != null and eqpName != ''">
+			AND eqp_name LIKE CONCAT('%', '${eqpName}','%')
+		</if>
+		<if test="eqpErrorStatus != null and eqpErrorStatus != '' and eqpErrorStatus != 7001">
+			AND C.`eqp_status` ='${eqpErrorStatus}'
+		</if>
+		) D 
+		<if test="eqpErrorStatus == 7001">
+			WHERE eqpErrorStatus IS NULL
+		</if>
+		 order by eqp_type, eqp_name
+	</select>
+</mapper>

@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lachesis.windranger.pbims.dao.PbimsEqpBedMapper" >
+  <resultMap id="BaseResultMap" type="com.lachesis.windranger.pbims.dbmodel.PbimsEqpBed" >
+    <id column="seq_id" property="seqId" jdbcType="BIGINT" />
+    <result column="eqp_code" property="eqpCode" jdbcType="VARCHAR" />
+    <result column="bed_code" property="bedCode" jdbcType="VARCHAR" />
+    <result column="bind_time" property="bindTime" jdbcType="TIMESTAMP" />
+    <result column="release_time" property="releaseTime" jdbcType="TIMESTAMP" />
+    <result column="time" property="time" jdbcType="TIMESTAMP" />
+    <result column="warning_period" property="warningPeriod" jdbcType="INTEGER" />
+    <result column="next_warning_time" property="nextWarningTime" jdbcType="TIMESTAMP" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="create_person" property="createPerson" jdbcType="VARCHAR" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="update_person" property="updatePerson" jdbcType="VARCHAR" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from pbims_eqp_bed
+    where seq_id = #{seqId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.lachesis.windranger.pbims.dbmodel.PbimsEqpBed" >
+    insert into pbims_eqp_bed (seq_id, eqp_code, bed_code, 
+      bind_time, release_time, time, 
+      warning_period, next_warning_time, status, 
+      create_time, create_person, update_time, 
+      update_person)
+    values (#{seqId,jdbcType=BIGINT}, #{eqpCode,jdbcType=VARCHAR}, #{bedCode,jdbcType=VARCHAR}, 
+      #{bindTime,jdbcType=TIMESTAMP}, #{releaseTime,jdbcType=TIMESTAMP}, #{time,jdbcType=TIMESTAMP}, 
+      #{warningPeriod,jdbcType=INTEGER}, #{nextWarningTime,jdbcType=TIMESTAMP}, #{status,jdbcType=INTEGER}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{createPerson,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{updatePerson,jdbcType=VARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.lachesis.windranger.pbims.dbmodel.PbimsEqpBed" >
+    update pbims_eqp_bed
+    set eqp_code = #{eqpCode,jdbcType=VARCHAR},
+      bed_code = #{bedCode,jdbcType=VARCHAR},
+      bind_time = #{bindTime,jdbcType=TIMESTAMP},
+      release_time = #{releaseTime,jdbcType=TIMESTAMP},
+      time = #{time,jdbcType=TIMESTAMP},
+      warning_period = #{warningPeriod,jdbcType=INTEGER},
+      next_warning_time = #{nextWarningTime,jdbcType=TIMESTAMP},
+      status = #{status,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      create_person = #{createPerson,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      update_person = #{updatePerson,jdbcType=VARCHAR}
+    where seq_id = #{seqId,jdbcType=BIGINT}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select seq_id, eqp_code, bed_code, bind_time, release_time, time, warning_period, 
+    next_warning_time, status, create_time, create_person, update_time, update_person
+    from pbims_eqp_bed
+    where seq_id = #{seqId,jdbcType=BIGINT}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select seq_id, eqp_code, bed_code, bind_time, release_time, time, warning_period, 
+    next_warning_time, status, create_time, create_person, update_time, update_person
+    from pbims_eqp_bed
+  </select>
+  <delete id="removeKeysWithSession" parameterType="java.util.List" >
+    delete from pbims_eqp_bed where seq_id IN <foreach close=")" collection="list" index="index" item="item" open="(" separator=","> #{item} </foreach>
+  </delete>
+  <delete id="deleteByBean" parameterType="java.lang.Long" >
+    delete from pbims_eqp_bed where 1=1 
+    <if test="seqId!=null" >
+      and seq_id = #{seqId,jdbcType=BIGINT}
+    </if>
+    <if test="eqpCode!=null" >
+      and eqp_code = #{eqpCode,jdbcType=VARCHAR}
+    </if>
+    <if test="bedCode!=null" >
+      and bed_code = #{bedCode,jdbcType=VARCHAR}
+    </if>
+    <if test="bindTime!=null" >
+      and bind_time = #{bindTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="releaseTime!=null" >
+      and release_time = #{releaseTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="time!=null" >
+      and time = #{time,jdbcType=TIMESTAMP}
+    </if>
+    <if test="warningPeriod!=null" >
+      and warning_period = #{warningPeriod,jdbcType=INTEGER}
+    </if>
+    <if test="nextWarningTime!=null" >
+      and next_warning_time = #{nextWarningTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="status!=null" >
+      and status = #{status,jdbcType=INTEGER}
+    </if>
+    <if test="createTime!=null" >
+      and create_time = #{createTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="createPerson!=null" >
+      and create_person = #{createPerson,jdbcType=VARCHAR}
+    </if>
+    <if test="updateTime!=null" >
+      and update_time = #{updateTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="updatePerson!=null" >
+      and update_person = #{updatePerson,jdbcType=VARCHAR}
+    </if>
+  </delete>
+  <insert parameterType="com.lachesis.windranger.pbims.dbmodel.PbimsEqpBed" id="insertAndReturnKey" keyProperty="seqId" useGeneratedKeys="true" >
+    insert into pbims_eqp_bed (seq_id, eqp_code, bed_code, 
+      bind_time, release_time, time, 
+      warning_period, next_warning_time, status, 
+      create_time, create_person, update_time, 
+      update_person)
+    values (#{seqId,jdbcType=BIGINT}, #{eqpCode,jdbcType=VARCHAR}, #{bedCode,jdbcType=VARCHAR}, 
+      #{bindTime,jdbcType=TIMESTAMP}, #{releaseTime,jdbcType=TIMESTAMP}, #{time,jdbcType=TIMESTAMP}, 
+      #{warningPeriod,jdbcType=INTEGER}, #{nextWarningTime,jdbcType=TIMESTAMP}, #{status,jdbcType=INTEGER}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{createPerson,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{updatePerson,jdbcType=VARCHAR})
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lachesis.windranger.pbims.dbmodel.PbimsEqpBed" >
+    update pbims_eqp_bed set
+    <trim suffixOverrides="," >
+      <if test="eqpCode != null" >
+        eqp_code = #{eqpCode,jdbcType=VARCHAR},
+      </if>
+      <if test="bedCode != null" >
+        bed_code = #{bedCode,jdbcType=VARCHAR},
+      </if>
+      <if test="bindTime != null" >
+        bind_time = #{bindTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="releaseTime != null" >
+        release_time = #{releaseTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="time != null" >
+        time = #{time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="warningPeriod != null" >
+        warning_period = #{warningPeriod,jdbcType=INTEGER},
+      </if>
+      <if test="nextWarningTime != null" >
+        next_warning_time = #{nextWarningTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createPerson != null" >
+        create_person = #{createPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatePerson != null" >
+        update_person = #{updatePerson,jdbcType=VARCHAR}
+      </if>
+    </trim>
+     where seq_id = #{seqId,jdbcType=BIGINT}
+  </update>
+  <select id="selectByBean" resultMap="BaseResultMap" parameterType="com.lachesis.windranger.pbims.dbmodel.PbimsEqpBed" >
+    select * from pbims_eqp_bed where 1=1 
+    <if test="seqId!=null" >
+      and seq_id = #{seqId,jdbcType=BIGINT}
+    </if>
+    <if test="eqpCode!=null" >
+      and eqp_code = #{eqpCode,jdbcType=VARCHAR}
+    </if>
+    <if test="bedCode!=null" >
+      and bed_code = #{bedCode,jdbcType=VARCHAR}
+    </if>
+    <if test="bindTime!=null" >
+      and bind_time = #{bindTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="releaseTime!=null" >
+      and release_time = #{releaseTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="time!=null" >
+      and time = #{time,jdbcType=TIMESTAMP}
+    </if>
+    <if test="warningPeriod!=null" >
+      and warning_period = #{warningPeriod,jdbcType=INTEGER}
+    </if>
+    <if test="nextWarningTime!=null" >
+      and next_warning_time = #{nextWarningTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="status!=null" >
+      and status = #{status,jdbcType=INTEGER}
+    </if>
+    <if test="createTime!=null" >
+      and create_time = #{createTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="createPerson!=null" >
+      and create_person = #{createPerson,jdbcType=VARCHAR}
+    </if>
+    <if test="updateTime!=null" >
+      and update_time = #{updateTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="updatePerson!=null" >
+      and update_person = #{updatePerson,jdbcType=VARCHAR}
+    </if>
+  </select>
+  <select id="countByBean" resultType="int" parameterType="com.lachesis.windranger.pbims.dbmodel.PbimsEqpBed" >
+    select count(0) from pbims_eqp_bed where 1=1 
+    <if test="seqId!=null" >
+      and seq_id = #{seqId,jdbcType=BIGINT}
+    </if>
+    <if test="eqpCode!=null" >
+      and eqp_code = #{eqpCode,jdbcType=VARCHAR}
+    </if>
+    <if test="bedCode!=null" >
+      and bed_code = #{bedCode,jdbcType=VARCHAR}
+    </if>
+    <if test="bindTime!=null" >
+      and bind_time = #{bindTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="releaseTime!=null" >
+      and release_time = #{releaseTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="time!=null" >
+      and time = #{time,jdbcType=TIMESTAMP}
+    </if>
+    <if test="warningPeriod!=null" >
+      and warning_period = #{warningPeriod,jdbcType=INTEGER}
+    </if>
+    <if test="nextWarningTime!=null" >
+      and next_warning_time = #{nextWarningTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="status!=null" >
+      and status = #{status,jdbcType=INTEGER}
+    </if>
+    <if test="createTime!=null" >
+      and create_time = #{createTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="createPerson!=null" >
+      and create_person = #{createPerson,jdbcType=VARCHAR}
+    </if>
+    <if test="updateTime!=null" >
+      and update_time = #{updateTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="updatePerson!=null" >
+      and update_person = #{updatePerson,jdbcType=VARCHAR}
+    </if>
+  </select>
+</mapper>

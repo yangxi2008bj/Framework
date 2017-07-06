@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lachesis.windranger.ldm.dao.LdmEqpErrorRecordMapperExt" >
+  <resultMap id="LdmEqpErrorRecordExt" type="com.lachesis.windranger.ldm.dbmodel.LdmEqpErrorRecordExt" extends="com.lachesis.windranger.ldm.dao.LdmEqpErrorRecordMapper.BaseResultMap" />
+</mapper>

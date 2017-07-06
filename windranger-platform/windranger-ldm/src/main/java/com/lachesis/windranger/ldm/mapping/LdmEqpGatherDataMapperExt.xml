@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lachesis.windranger.ldm.dao.LdmEqpGatherDataMapperExt" >
+  <resultMap id="LdmEqpGatherDataExt" type="com.lachesis.windranger.ldm.dbmodel.LdmEqpGatherDataExt" extends="com.lachesis.windranger.ldm.dao.LdmEqpGatherDataMapper.BaseResultMap" />
+  
+  <select id="getLastDataByTime" parameterType="string" resultType="com.lachesis.windranger.ldm.dbmodel.LdmEqpGatherData">
+  		SELECT * FROM ldm_eqp_gather_data WHERE  data_type=#{0} and gather_time > #{1} order by gather_time desc limit 1
+  </select>
+</mapper>

@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lachesis.windranger.ldm.dao.LdmServerMapper" >
+  <resultMap id="BaseResultMap" type="com.lachesis.windranger.ldm.dbmodel.LdmServer" >
+    <id column="seq_id" property="seqId" jdbcType="BIGINT" />
+    <result column="server_code" property="serverCode" jdbcType="VARCHAR" />
+    <result column="ip" property="ip" jdbcType="INTEGER" />
+    <result column="admin_user" property="adminUser" jdbcType="VARCHAR" />
+    <result column="admin_pass" property="adminPass" jdbcType="VARCHAR" />
+    <result column="comp_name" property="compName" jdbcType="VARCHAR" />
+    <result column="comp_os" property="compOs" jdbcType="VARCHAR" />
+    <result column="cpu" property="cpu" jdbcType="VARCHAR" />
+    <result column="memory" property="memory" jdbcType="VARCHAR" />
+    <result column="cpu_use_rate" property="cpuUseRate" jdbcType="REAL" />
+    <result column="memory_use_rate" property="memoryUseRate" jdbcType="REAL" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="create_person" property="createPerson" jdbcType="VARCHAR" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="update_person" property="updatePerson" jdbcType="VARCHAR" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from ldm_server
+    where seq_id = #{seqId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.lachesis.windranger.ldm.dbmodel.LdmServer" >
+    insert into ldm_server (seq_id, server_code, ip, 
+      admin_user, admin_pass, comp_name, 
+      comp_os, cpu, memory, 
+      cpu_use_rate, memory_use_rate, create_time, 
+      create_person, update_time, update_person
+      )
+    values (#{seqId,jdbcType=BIGINT}, #{serverCode,jdbcType=VARCHAR}, #{ip,jdbcType=INTEGER}, 
+      #{adminUser,jdbcType=VARCHAR}, #{adminPass,jdbcType=VARCHAR}, #{compName,jdbcType=VARCHAR}, 
+      #{compOs,jdbcType=VARCHAR}, #{cpu,jdbcType=VARCHAR}, #{memory,jdbcType=VARCHAR}, 
+      #{cpuUseRate,jdbcType=REAL}, #{memoryUseRate,jdbcType=REAL}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{createPerson,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}, #{updatePerson,jdbcType=VARCHAR}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.lachesis.windranger.ldm.dbmodel.LdmServer" >
+    update ldm_server
+    set server_code = #{serverCode,jdbcType=VARCHAR},
+      ip = #{ip,jdbcType=INTEGER},
+      admin_user = #{adminUser,jdbcType=VARCHAR},
+      admin_pass = #{adminPass,jdbcType=VARCHAR},
+      comp_name = #{compName,jdbcType=VARCHAR},
+      comp_os = #{compOs,jdbcType=VARCHAR},
+      cpu = #{cpu,jdbcType=VARCHAR},
+      memory = #{memory,jdbcType=VARCHAR},
+      cpu_use_rate = #{cpuUseRate,jdbcType=REAL},
+      memory_use_rate = #{memoryUseRate,jdbcType=REAL},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      create_person = #{createPerson,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      update_person = #{updatePerson,jdbcType=VARCHAR}
+    where seq_id = #{seqId,jdbcType=BIGINT}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select seq_id, server_code, ip, admin_user, admin_pass, comp_name, comp_os, cpu, 
+    memory, cpu_use_rate, memory_use_rate, create_time, create_person, update_time, update_person
+    from ldm_server
+    where seq_id = #{seqId,jdbcType=BIGINT}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select seq_id, server_code, ip, admin_user, admin_pass, comp_name, comp_os, cpu, 
+    memory, cpu_use_rate, memory_use_rate, create_time, create_person, update_time, update_person
+    from ldm_server
+  </select>
+  <delete id="removeKeysWithSession" parameterType="java.util.List" >
+    delete from ldm_server where seq_id IN <foreach close=")" collection="list" index="index" item="item" open="(" separator=","> #{item} </foreach>
+  </delete>
+  <delete id="deleteByBean" parameterType="java.lang.Long" >
+    delete from ldm_server where 1=1 
+    <if test="seqId!=null" >
+      and seq_id = #{seqId,jdbcType=BIGINT}
+    </if>
+    <if test="serverCode!=null" >
+      and server_code = #{serverCode,jdbcType=VARCHAR}
+    </if>
+    <if test="ip!=null" >
+      and ip = #{ip,jdbcType=INTEGER}
+    </if>
+    <if test="adminUser!=null" >
+      and admin_user = #{adminUser,jdbcType=VARCHAR}
+    </if>
+    <if test="adminPass!=null" >
+      and admin_pass = #{adminPass,jdbcType=VARCHAR}
+    </if>
+    <if test="compName!=null" >
+      and comp_name = #{compName,jdbcType=VARCHAR}
+    </if>
+    <if test="compOs!=null" >
+      and comp_os = #{compOs,jdbcType=VARCHAR}
+    </if>
+    <if test="cpu!=null" >
+      and cpu = #{cpu,jdbcType=VARCHAR}
+    </if>
+    <if test="memory!=null" >
+      and memory = #{memory,jdbcType=VARCHAR}
+    </if>
+    <if test="cpuUseRate!=null" >
+      and cpu_use_rate = #{cpuUseRate,jdbcType=REAL}
+    </if>
+    <if test="memoryUseRate!=null" >
+      and memory_use_rate = #{memoryUseRate,jdbcType=REAL}
+    </if>
+    <if test="createTime!=null" >
+      and create_time = #{createTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="createPerson!=null" >
+      and create_person = #{createPerson,jdbcType=VARCHAR}
+    </if>
+    <if test="updateTime!=null" >
+      and update_time = #{updateTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="updatePerson!=null" >
+      and update_person = #{updatePerson,jdbcType=VARCHAR}
+    </if>
+  </delete>
+  <insert parameterType="com.lachesis.windranger.ldm.dbmodel.LdmServer" id="insertAndReturnKey" keyProperty="seqId" useGeneratedKeys="true" >
+    insert into ldm_server (seq_id, server_code, ip, 
+      admin_user, admin_pass, comp_name, 
+      comp_os, cpu, memory, 
+      cpu_use_rate, memory_use_rate, create_time, 
+      create_person, update_time, update_person
+      )
+    values (#{seqId,jdbcType=BIGINT}, #{serverCode,jdbcType=VARCHAR}, #{ip,jdbcType=INTEGER}, 
+      #{adminUser,jdbcType=VARCHAR}, #{adminPass,jdbcType=VARCHAR}, #{compName,jdbcType=VARCHAR}, 
+      #{compOs,jdbcType=VARCHAR}, #{cpu,jdbcType=VARCHAR}, #{memory,jdbcType=VARCHAR}, 
+      #{cpuUseRate,jdbcType=REAL}, #{memoryUseRate,jdbcType=REAL}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{createPerson,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}, #{updatePerson,jdbcType=VARCHAR}
+      )
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lachesis.windranger.ldm.dbmodel.LdmServer" >
+    update ldm_server set
+    <trim suffixOverrides="," >
+      <if test="serverCode != null" >
+        server_code = #{serverCode,jdbcType=VARCHAR},
+      </if>
+      <if test="ip != null" >
+        ip = #{ip,jdbcType=INTEGER},
+      </if>
+      <if test="adminUser != null" >
+        admin_user = #{adminUser,jdbcType=VARCHAR},
+      </if>
+      <if test="adminPass != null" >
+        admin_pass = #{adminPass,jdbcType=VARCHAR},
+      </if>
+      <if test="compName != null" >
+        comp_name = #{compName,jdbcType=VARCHAR},
+      </if>
+      <if test="compOs != null" >
+        comp_os = #{compOs,jdbcType=VARCHAR},
+      </if>
+      <if test="cpu != null" >
+        cpu = #{cpu,jdbcType=VARCHAR},
+      </if>
+      <if test="memory != null" >
+        memory = #{memory,jdbcType=VARCHAR},
+      </if>
+      <if test="cpuUseRate != null" >
+        cpu_use_rate = #{cpuUseRate,jdbcType=REAL},
+      </if>
+      <if test="memoryUseRate != null" >
+        memory_use_rate = #{memoryUseRate,jdbcType=REAL},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createPerson != null" >
+        create_person = #{createPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatePerson != null" >
+        update_person = #{updatePerson,jdbcType=VARCHAR}
+      </if>
+    </trim>
+     where seq_id = #{seqId,jdbcType=BIGINT}
+  </update>
+  <select id="selectByBean" resultMap="BaseResultMap" parameterType="com.lachesis.windranger.ldm.dbmodel.LdmServer" >
+    select * from ldm_server where 1=1 
+    <if test="seqId!=null" >
+      and seq_id = #{seqId,jdbcType=BIGINT}
+    </if>
+    <if test="serverCode!=null" >
+      and server_code = #{serverCode,jdbcType=VARCHAR}
+    </if>
+    <if test="ip!=null" >
+      and ip = #{ip,jdbcType=INTEGER}
+    </if>
+    <if test="adminUser!=null" >
+      and admin_user = #{adminUser,jdbcType=VARCHAR}
+    </if>
+    <if test="adminPass!=null" >
+      and admin_pass = #{adminPass,jdbcType=VARCHAR}
+    </if>
+    <if test="compName!=null" >
+      and comp_name = #{compName,jdbcType=VARCHAR}
+    </if>
+    <if test="compOs!=null" >
+      and comp_os = #{compOs,jdbcType=VARCHAR}
+    </if>
+    <if test="cpu!=null" >
+      and cpu = #{cpu,jdbcType=VARCHAR}
+    </if>
+    <if test="memory!=null" >
+      and memory = #{memory,jdbcType=VARCHAR}
+    </if>
+    <if test="cpuUseRate!=null" >
+      and cpu_use_rate = #{cpuUseRate,jdbcType=REAL}
+    </if>
+    <if test="memoryUseRate!=null" >
+      and memory_use_rate = #{memoryUseRate,jdbcType=REAL}
+    </if>
+    <if test="createTime!=null" >
+      and create_time = #{createTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="createPerson!=null" >
+      and create_person = #{createPerson,jdbcType=VARCHAR}
+    </if>
+    <if test="updateTime!=null" >
+      and update_time = #{updateTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="updatePerson!=null" >
+      and update_person = #{updatePerson,jdbcType=VARCHAR}
+    </if>
+  </select>
+  <select id="countByBean" resultType="int" parameterType="com.lachesis.windranger.ldm.dbmodel.LdmServer" >
+    select count(0) from ldm_server where 1=1 
+    <if test="seqId!=null" >
+      and seq_id = #{seqId,jdbcType=BIGINT}
+    </if>
+    <if test="serverCode!=null" >
+      and server_code = #{serverCode,jdbcType=VARCHAR}
+    </if>
+    <if test="ip!=null" >
+      and ip = #{ip,jdbcType=INTEGER}
+    </if>
+    <if test="adminUser!=null" >
+      and admin_user = #{adminUser,jdbcType=VARCHAR}
+    </if>
+    <if test="adminPass!=null" >
+      and admin_pass = #{adminPass,jdbcType=VARCHAR}
+    </if>
+    <if test="compName!=null" >
+      and comp_name = #{compName,jdbcType=VARCHAR}
+    </if>
+    <if test="compOs!=null" >
+      and comp_os = #{compOs,jdbcType=VARCHAR}
+    </if>
+    <if test="cpu!=null" >
+      and cpu = #{cpu,jdbcType=VARCHAR}
+    </if>
+    <if test="memory!=null" >
+      and memory = #{memory,jdbcType=VARCHAR}
+    </if>
+    <if test="cpuUseRate!=null" >
+      and cpu_use_rate = #{cpuUseRate,jdbcType=REAL}
+    </if>
+    <if test="memoryUseRate!=null" >
+      and memory_use_rate = #{memoryUseRate,jdbcType=REAL}
+    </if>
+    <if test="createTime!=null" >
+      and create_time = #{createTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="createPerson!=null" >
+      and create_person = #{createPerson,jdbcType=VARCHAR}
+    </if>
+    <if test="updateTime!=null" >
+      and update_time = #{updateTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="updatePerson!=null" >
+      and update_person = #{updatePerson,jdbcType=VARCHAR}
+    </if>
+  </select>
+</mapper>

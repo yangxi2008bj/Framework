@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lachesis.windranger.ldm.dao.LdmEqpInsightConfigMapperExt" >
+  <update id="updateByBean" parameterType="com.lachesis.windranger.ldm.dbmodel.LdmEqpInsightConfig" >
+    update ldm_eqp_insight_config
+    set 
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+	    <if test="eqpMac!=null" >
+	      , eqp_mac = #{eqpMac,jdbcType=VARCHAR}
+	    </if>
+	    <if test="currentBedDuration!=null" >
+	      , current_bed_duration = #{currentBedDuration,jdbcType=INTEGER}
+	    </if>
+	    <if test="currentBexOn!=null" >
+	      , current_bex_on = #{currentBexOn,jdbcType=INTEGER}
+	    </if>
+	    <if test="currentHrHighLimit!=null" >
+	      , current_hr_high_limit = #{currentHrHighLimit,jdbcType=INTEGER}
+	    </if>
+	    <if test="currentHrLowLimit!=null" >
+	      , current_hr_low_limit = #{currentHrLowLimit,jdbcType=INTEGER}
+	    </if>
+	    <if test="currentHrOn!=null" >
+	      , current_hr_on = #{currentHrOn,jdbcType=INTEGER}
+	    </if>
+	    <if test="currentMoveOn!=null" >
+	      , current_move_on = #{currentMoveOn,jdbcType=INTEGER}
+	    </if>
+	    <if test="currentPatientAdmitted!=null" >
+	      , current_patient_admitted = #{currentPatientAdmitted,jdbcType=VARCHAR}
+	    </if>
+	    <if test="currentPatientId!=null" >
+	      , current_patient_id = #{currentPatientId,jdbcType=VARCHAR}
+	    </if>
+	    <if test="currentRrHighLimit!=null" >
+	      , current_rr_high_limit = #{currentRrHighLimit,jdbcType=INTEGER}
+	    </if>
+	    <if test="currentRrLowLimit!=null" >
+	      , current_rr_low_limit = #{currentRrLowLimit,jdbcType=INTEGER}
+	    </if>
+	    <if test="currentRrOn!=null" >
+	      , current_rr_on = #{currentRrOn,jdbcType=INTEGER}
+	    </if>
+	    <if test="currentTurnDuration!=null" >
+	      , current_turn_duration = #{currentTurnDuration,jdbcType=INTEGER}
+	    </if>
+	    <if test="currentTurnOn!=null" >
+	      , current_turn_on = #{currentTurnOn,jdbcType=INTEGER}
+	    </if>
+	    <if test="currentPauseActive!=null" >
+	      , current_pause_active = #{currentPauseActive,jdbcType=INTEGER}
+	    </if>
+	    <if test="currentChairDuration!=null" >
+	      , current_chair_duration = #{currentChairDuration,jdbcType=INTEGER}
+	    </if>
+	    <if test="createTime!=null" >
+	      , create_time = #{createTime,jdbcType=TIMESTAMP}
+	    </if>
+  </update>
+</mapper>

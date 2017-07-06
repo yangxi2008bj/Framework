@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lachesis.windranger.ldm.dao.DeviceAliasMapper" >
+  <resultMap id="BaseResultMap" type="com.lachesis.windranger.ldm.dbmodel.DeviceAlias" >
+    <id column="ipAddress" property="ipaddress" jdbcType="VARCHAR" />
+    <result column="alias" property="alias" jdbcType="VARCHAR" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from device_alias
+    where ipAddress = #{ipaddress,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.lachesis.windranger.ldm.dbmodel.DeviceAlias" >
+    insert into device_alias (ipAddress, alias)
+    values (#{ipaddress,jdbcType=VARCHAR}, #{alias,jdbcType=VARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.lachesis.windranger.ldm.dbmodel.DeviceAlias" >
+    update device_alias
+    set alias = #{alias,jdbcType=VARCHAR}
+    where ipAddress = #{ipaddress,jdbcType=VARCHAR}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select ipAddress, alias
+    from device_alias
+    where ipAddress = #{ipaddress,jdbcType=VARCHAR}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select ipAddress, alias
+    from device_alias
+  </select>
+  <delete id="removeKeysWithSession" parameterType="java.util.List" >
+    delete from device_alias where ipAddress IN <foreach close=")" collection="list" index="index" item="item" open="(" separator=","> #{item} </foreach>
+  </delete>
+  <delete id="deleteByBean" parameterType="java.lang.Long" >
+    delete from device_alias where 1=1 
+    <if test="ipaddress!=null" >
+      and ipAddress = #{ipaddress,jdbcType=VARCHAR}
+    </if>
+    <if test="alias!=null" >
+      and alias = #{alias,jdbcType=VARCHAR}
+    </if>
+  </delete>
+  <insert parameterType="com.lachesis.windranger.ldm.dbmodel.DeviceAlias" id="insertAndReturnKey" keyProperty="seqId" useGeneratedKeys="true" >
+    insert into device_alias (ipAddress, alias)
+    values (#{ipaddress,jdbcType=VARCHAR}, #{alias,jdbcType=VARCHAR})
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lachesis.windranger.ldm.dbmodel.DeviceAlias" >
+    update device_alias set
+    <trim suffixOverrides="," >
+      <if test="alias != null" >
+        alias = #{alias,jdbcType=VARCHAR}
+      </if>
+    </trim>
+     where ipAddress = #{ipaddress,jdbcType=VARCHAR}
+  </update>
+  <select id="selectByBean" resultMap="BaseResultMap" parameterType="com.lachesis.windranger.ldm.dbmodel.DeviceAlias" >
+    select * from device_alias where 1=1 
+    <if test="ipaddress!=null" >
+      and ipAddress = #{ipaddress,jdbcType=VARCHAR}
+    </if>
+    <if test="alias!=null" >
+      and alias = #{alias,jdbcType=VARCHAR}
+    </if>
+  </select>
+  <select id="countByBean" resultType="int" parameterType="com.lachesis.windranger.ldm.dbmodel.DeviceAlias" >
+    select count(0) from device_alias where 1=1 
+    <if test="ipaddress!=null" >
+      and ipAddress = #{ipaddress,jdbcType=VARCHAR}
+    </if>
+    <if test="alias!=null" >
+      and alias = #{alias,jdbcType=VARCHAR}
+    </if>
+  </select>
+</mapper>

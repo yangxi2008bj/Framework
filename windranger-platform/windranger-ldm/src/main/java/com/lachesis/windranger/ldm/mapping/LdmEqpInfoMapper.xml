@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lachesis.windranger.ldm.dao.LdmEqpInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.lachesis.windranger.ldm.dbmodel.LdmEqpInfo" >
+    <id column="seq_id" property="seqId" jdbcType="BIGINT" />
+    <result column="eqp_name" property="eqpName" jdbcType="VARCHAR" />
+    <result column="eqp_type" property="eqpType" jdbcType="INTEGER" />
+    <result column="eqp_sn" property="eqpSn" jdbcType="VARCHAR" />
+    <result column="eqp_model" property="eqpModel" jdbcType="INTEGER" />
+    <result column="eqp_submodel" property="eqpSubmodel" jdbcType="INTEGER" />
+    <result column="eqp_mac" property="eqpMac" jdbcType="VARCHAR" />
+    <result column="eqp_belong" property="eqpBelong" jdbcType="VARCHAR" />
+    <result column="eqp_mfrs" property="eqpMfrs" jdbcType="VARCHAR" />
+    <result column="eqp_status" property="eqpStatus" jdbcType="INTEGER" />
+    <result column="eqp_notes" property="eqpNotes" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="create_person" property="createPerson" jdbcType="VARCHAR" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="update_person" property="updatePerson" jdbcType="VARCHAR" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from ldm_eqp_info
+    where seq_id = #{seqId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.lachesis.windranger.ldm.dbmodel.LdmEqpInfo" >
+    insert into ldm_eqp_info (seq_id, eqp_name, eqp_type, 
+      eqp_sn, eqp_model, eqp_submodel, 
+      eqp_mac, eqp_belong, eqp_mfrs, 
+      eqp_status, eqp_notes, create_time, 
+      create_person, update_time, update_person
+      )
+    values (#{seqId,jdbcType=BIGINT}, #{eqpName,jdbcType=VARCHAR}, #{eqpType,jdbcType=INTEGER}, 
+      #{eqpSn,jdbcType=VARCHAR}, #{eqpModel,jdbcType=INTEGER}, #{eqpSubmodel,jdbcType=INTEGER}, 
+      #{eqpMac,jdbcType=VARCHAR}, #{eqpBelong,jdbcType=VARCHAR}, #{eqpMfrs,jdbcType=VARCHAR}, 
+      #{eqpStatus,jdbcType=INTEGER}, #{eqpNotes,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{createPerson,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}, #{updatePerson,jdbcType=VARCHAR}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.lachesis.windranger.ldm.dbmodel.LdmEqpInfo" >
+    update ldm_eqp_info
+    set eqp_name = #{eqpName,jdbcType=VARCHAR},
+      eqp_type = #{eqpType,jdbcType=INTEGER},
+      eqp_sn = #{eqpSn,jdbcType=VARCHAR},
+      eqp_model = #{eqpModel,jdbcType=INTEGER},
+      eqp_submodel = #{eqpSubmodel,jdbcType=INTEGER},
+      eqp_mac = #{eqpMac,jdbcType=VARCHAR},
+      eqp_belong = #{eqpBelong,jdbcType=VARCHAR},
+      eqp_mfrs = #{eqpMfrs,jdbcType=VARCHAR},
+      eqp_status = #{eqpStatus,jdbcType=INTEGER},
+      eqp_notes = #{eqpNotes,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      create_person = #{createPerson,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      update_person = #{updatePerson,jdbcType=VARCHAR}
+    where seq_id = #{seqId,jdbcType=BIGINT}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select seq_id, eqp_name, eqp_type, eqp_sn, eqp_model, eqp_submodel, eqp_mac, eqp_belong, 
+    eqp_mfrs, eqp_status, eqp_notes, create_time, create_person, update_time, update_person
+    from ldm_eqp_info
+    where seq_id = #{seqId,jdbcType=BIGINT}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select seq_id, eqp_name, eqp_type, eqp_sn, eqp_model, eqp_submodel, eqp_mac, eqp_belong, 
+    eqp_mfrs, eqp_status, eqp_notes, create_time, create_person, update_time, update_person
+    from ldm_eqp_info
+  </select>
+  <delete id="removeKeysWithSession" parameterType="java.util.List" >
+    delete from ldm_eqp_info where seq_id IN <foreach close=")" collection="list" index="index" item="item" open="(" separator=","> #{item} </foreach>
+  </delete>
+  <delete id="deleteByBean" parameterType="java.lang.Long" >
+    delete from ldm_eqp_info where 1=1 
+    <if test="seqId!=null" >
+      and seq_id = #{seqId,jdbcType=BIGINT}
+    </if>
+    <if test="eqpName!=null" >
+      and eqp_name = #{eqpName,jdbcType=VARCHAR}
+    </if>
+    <if test="eqpType!=null" >
+      and eqp_type = #{eqpType,jdbcType=INTEGER}
+    </if>
+    <if test="eqpSn!=null" >
+      and eqp_sn = #{eqpSn,jdbcType=VARCHAR}
+    </if>
+    <if test="eqpModel!=null" >
+      and eqp_model = #{eqpModel,jdbcType=INTEGER}
+    </if>
+    <if test="eqpSubmodel!=null" >
+      and eqp_submodel = #{eqpSubmodel,jdbcType=INTEGER}
+    </if>
+    <if test="eqpMac!=null" >
+      and eqp_mac = #{eqpMac,jdbcType=VARCHAR}
+    </if>
+    <if test="eqpBelong!=null" >
+      and eqp_belong = #{eqpBelong,jdbcType=VARCHAR}
+    </if>
+    <if test="eqpMfrs!=null" >
+      and eqp_mfrs = #{eqpMfrs,jdbcType=VARCHAR}
+    </if>
+    <if test="eqpStatus!=null" >
+      and eqp_status = #{eqpStatus,jdbcType=INTEGER}
+    </if>
+    <if test="eqpNotes!=null" >
+      and eqp_notes = #{eqpNotes,jdbcType=VARCHAR}
+    </if>
+    <if test="createTime!=null" >
+      and create_time = #{createTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="createPerson!=null" >
+      and create_person = #{createPerson,jdbcType=VARCHAR}
+    </if>
+    <if test="updateTime!=null" >
+      and update_time = #{updateTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="updatePerson!=null" >
+      and update_person = #{updatePerson,jdbcType=VARCHAR}
+    </if>
+  </delete>
+  <insert parameterType="com.lachesis.windranger.ldm.dbmodel.LdmEqpInfo" id="insertAndReturnKey" keyProperty="seqId" useGeneratedKeys="true" >
+    insert into ldm_eqp_info (seq_id, eqp_name, eqp_type, 
+      eqp_sn, eqp_model, eqp_submodel, 
+      eqp_mac, eqp_belong, eqp_mfrs, 
+      eqp_status, eqp_notes, create_time, 
+      create_person, update_time, update_person
+      )
+    values (#{seqId,jdbcType=BIGINT}, #{eqpName,jdbcType=VARCHAR}, #{eqpType,jdbcType=INTEGER}, 
+      #{eqpSn,jdbcType=VARCHAR}, #{eqpModel,jdbcType=INTEGER}, #{eqpSubmodel,jdbcType=INTEGER}, 
+      #{eqpMac,jdbcType=VARCHAR}, #{eqpBelong,jdbcType=VARCHAR}, #{eqpMfrs,jdbcType=VARCHAR}, 
+      #{eqpStatus,jdbcType=INTEGER}, #{eqpNotes,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{createPerson,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}, #{updatePerson,jdbcType=VARCHAR}
+      )
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lachesis.windranger.ldm.dbmodel.LdmEqpInfo" >
+    update ldm_eqp_info set
+    <trim suffixOverrides="," >
+      <if test="eqpName != null" >
+        eqp_name = #{eqpName,jdbcType=VARCHAR},
+      </if>
+      <if test="eqpType != null" >
+        eqp_type = #{eqpType,jdbcType=INTEGER},
+      </if>
+      <if test="eqpSn != null" >
+        eqp_sn = #{eqpSn,jdbcType=VARCHAR},
+      </if>
+      <if test="eqpModel != null" >
+        eqp_model = #{eqpModel,jdbcType=INTEGER},
+      </if>
+      <if test="eqpSubmodel != null" >
+        eqp_submodel = #{eqpSubmodel,jdbcType=INTEGER},
+      </if>
+      <if test="eqpMac != null" >
+        eqp_mac = #{eqpMac,jdbcType=VARCHAR},
+      </if>
+      <if test="eqpBelong != null" >
+        eqp_belong = #{eqpBelong,jdbcType=VARCHAR},
+      </if>
+      <if test="eqpMfrs != null" >
+        eqp_mfrs = #{eqpMfrs,jdbcType=VARCHAR},
+      </if>
+      <if test="eqpStatus != null" >
+        eqp_status = #{eqpStatus,jdbcType=INTEGER},
+      </if>
+      <if test="eqpNotes != null" >
+        eqp_notes = #{eqpNotes,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createPerson != null" >
+        create_person = #{createPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatePerson != null" >
+        update_person = #{updatePerson,jdbcType=VARCHAR}
+      </if>
+    </trim>
+     where seq_id = #{seqId,jdbcType=BIGINT}
+  </update>
+  <select id="selectByBean" resultMap="BaseResultMap" parameterType="com.lachesis.windranger.ldm.dbmodel.LdmEqpInfo" >
+    select * from ldm_eqp_info where 1=1 
+    <if test="seqId!=null" >
+      and seq_id = #{seqId,jdbcType=BIGINT}
+    </if>
+    <if test="eqpName!=null" >
+      and eqp_name = #{eqpName,jdbcType=VARCHAR}
+    </if>
+    <if test="eqpType!=null" >
+      and eqp_type = #{eqpType,jdbcType=INTEGER}
+    </if>
+    <if test="eqpSn!=null" >
+      and eqp_sn = #{eqpSn,jdbcType=VARCHAR}
+    </if>
+    <if test="eqpModel!=null" >
+      and eqp_model = #{eqpModel,jdbcType=INTEGER}
+    </if>
+    <if test="eqpSubmodel!=null" >
+      and eqp_submodel = #{eqpSubmodel,jdbcType=INTEGER}
+    </if>
+    <if test="eqpMac!=null" >
+      and eqp_mac = #{eqpMac,jdbcType=VARCHAR}
+    </if>
+    <if test="eqpBelong!=null" >
+      and eqp_belong = #{eqpBelong,jdbcType=VARCHAR}
+    </if>
+    <if test="eqpMfrs!=null" >
+      and eqp_mfrs = #{eqpMfrs,jdbcType=VARCHAR}
+    </if>
+    <if test="eqpStatus!=null" >
+      and eqp_status = #{eqpStatus,jdbcType=INTEGER}
+    </if>
+    <if test="eqpNotes!=null" >
+      and eqp_notes = #{eqpNotes,jdbcType=VARCHAR}
+    </if>
+    <if test="createTime!=null" >
+      and create_time = #{createTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="createPerson!=null" >
+      and create_person = #{createPerson,jdbcType=VARCHAR}
+    </if>
+    <if test="updateTime!=null" >
+      and update_time = #{updateTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="updatePerson!=null" >
+      and update_person = #{updatePerson,jdbcType=VARCHAR}
+    </if>
+  </select>
+  <select id="countByBean" resultType="int" parameterType="com.lachesis.windranger.ldm.dbmodel.LdmEqpInfo" >
+    select count(0) from ldm_eqp_info where 1=1 
+    <if test="seqId!=null" >
+      and seq_id = #{seqId,jdbcType=BIGINT}
+    </if>
+    <if test="eqpName!=null" >
+      and eqp_name = #{eqpName,jdbcType=VARCHAR}
+    </if>
+    <if test="eqpType!=null" >
+      and eqp_type = #{eqpType,jdbcType=INTEGER}
+    </if>
+    <if test="eqpSn!=null" >
+      and eqp_sn = #{eqpSn,jdbcType=VARCHAR}
+    </if>
+    <if test="eqpModel!=null" >
+      and eqp_model = #{eqpModel,jdbcType=INTEGER}
+    </if>
+    <if test="eqpSubmodel!=null" >
+      and eqp_submodel = #{eqpSubmodel,jdbcType=INTEGER}
+    </if>
+    <if test="eqpMac!=null" >
+      and eqp_mac = #{eqpMac,jdbcType=VARCHAR}
+    </if>
+    <if test="eqpBelong!=null" >
+      and eqp_belong = #{eqpBelong,jdbcType=VARCHAR}
+    </if>
+    <if test="eqpMfrs!=null" >
+      and eqp_mfrs = #{eqpMfrs,jdbcType=VARCHAR}
+    </if>
+    <if test="eqpStatus!=null" >
+      and eqp_status = #{eqpStatus,jdbcType=INTEGER}
+    </if>
+    <if test="eqpNotes!=null" >
+      and eqp_notes = #{eqpNotes,jdbcType=VARCHAR}
+    </if>
+    <if test="createTime!=null" >
+      and create_time = #{createTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="createPerson!=null" >
+      and create_person = #{createPerson,jdbcType=VARCHAR}
+    </if>
+    <if test="updateTime!=null" >
+      and update_time = #{updateTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="updatePerson!=null" >
+      and update_person = #{updatePerson,jdbcType=VARCHAR}
+    </if>
+  </select>
+</mapper>

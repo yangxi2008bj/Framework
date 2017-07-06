@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lachesis.windranger.ldm.dao.LdmEqpReceiveInfoMapperExt" >
+  <resultMap id="LdmEqpReceiveInfoExt" type="com.lachesis.windranger.ldm.dbmodel.LdmEqpReceiveInfoExt" extends="com.lachesis.windranger.ldm.dao.LdmEqpReceiveInfoMapper.BaseResultMap" />
+  
+  <select id="getArsmsEqpCodes" parameterType="java.util.List" resultType="string" >
+  	SELECT eqp_code eqpCode FROM arsms_eqp_user WHERE user_code IN 
+  	<foreach collection="list" index="index" item="userCode" open="(" close=")" separator=",">
+  		#{userCode}
+  	</foreach>
+  	AND STATUS=1
+  </select>
+  
+  <select id="getPimsEqpCodes" parameterType="java.util.List" resultType="string">
+  	SELECT eqp_code eqpCode FROM pims_eqp_pat WHERE pat_code IN 
+  	<foreach collection="list" index="index" item="patCode" open="(" close=")" separator=",">
+  		#{patCode}
+  	</foreach>
+  	AND STATUS=1
+  </select>
+  
+  
+  <select id="getArsmsEqpUser" parameterType="string" resultType="com.lachesis.windranger.ldm.vo.ArsmsEqpUserVO">
+  	SELECT eqp_code eqpCode,user_code userCode FROM arsms_eqp_user WHERE eqp_code=#{eqpCode} and status=1
+  </select>
+  <select id="getPimsEqpPat" parameterType="string" resultType="com.lachesis.windranger.ldm.vo.PimsEqpPatVO">
+  	SELECT eqp_code eqpCode,pat_code patCode FROM pims_eqp_pat WHERE eqp_code=#{eqpCode} and status=1
+  </select>
+  
+</mapper>

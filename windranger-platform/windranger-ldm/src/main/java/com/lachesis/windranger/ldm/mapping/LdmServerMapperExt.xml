@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lachesis.windranger.ldm.dao.LdmServerMapperExt" >
+	<select id="selectByProductSeqId" resultType="com.lachesis.windranger.ldm.dbmodel.LdmServer" parameterType="java.lang.Long" >
+    	select distinct A.seq_id, A.server_code, A.ip, A.admin_user, A.admin_pass, A.comp_name, A.comp_os, A.cpu, 
+    	A.memory, A.cpu_use_rate, A.memory_use_rate, A.create_time, A.create_person, A.update_time, A.update_person
+    	from ldm_server A, ldm_product_server B
+    	where A.server_code = B.server_code AND B.prod_seq_id = #{prodSeqId,jdbcType=BIGINT}
+    </select>
+    
+    <select id="getCountProductSeqId" resultType="java.lang.Integer" parameterType="java.lang.Long" >
+    	select count(1)
+    	from ldm_server A, ldm_product_server B
+    	where A.server_code = B.server_code AND B.prod_seq_id = #{prodSeqId,jdbcType=BIGINT}
+    </select>
+</mapper>

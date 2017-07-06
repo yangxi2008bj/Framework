@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lachesis.windranger.ldm.dao.LdmEqpPatientReadingRtMapperExt" >
+  <resultMap id="LdmEqpPatientReadingRtExt" type="com.lachesis.windranger.ldm.dbmodel.LdmEqpPatientReadingRtExt" extends="com.lachesis.windranger.ldm.dao.LdmEqpPatientReadingRtMapper.BaseResultMap" />
+  <select id="getPbimsBedEarlySenseVOs" parameterType="list" resultType="com.lachesis.windranger.ldm.vo.PbimsBedEarlySenseVO">
+	  SELECT
+	  d.bed_code bedCode,
+	  c.rr,
+	  c.turn_countup turnCountup,
+	  c.in_bed	inBed,
+	  c.alert_message alertMessage,
+	  c.update_time   updateTime	
+	FROM ldm_eqp_patient_reading_rt c
+	  INNER JOIN (SELECT
+	                a.*
+	              FROM pbims_eqp_bed a
+	                INNER JOIN ldm_eqp_info b
+	                  ON a.eqp_code = b.eqp_mac
+	              WHERE a.status = 1
+	                  AND a.bed_code IN
+		<foreach collection="list" index="index" item="hosBed" separator="," open="(" close=")">
+			#{hosBed.bedCode}
+		</foreach>
+	) d
+	    ON c.eqp_mac = d.eqp_code   
+  </select>
+  
+</mapper>

@@ -1,0 +1,341 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lachesis.windranger.ldm.dao.LdmEqpInsightConfigMapper" >
+  <resultMap id="BaseResultMap" type="com.lachesis.windranger.ldm.dbmodel.LdmEqpInsightConfig" >
+    <id column="seq_id" property="seqId" jdbcType="BIGINT" />
+    <result column="eqp_mac" property="eqpMac" jdbcType="VARCHAR" />
+    <result column="current_bed_duration" property="currentBedDuration" jdbcType="INTEGER" />
+    <result column="current_bex_on" property="currentBexOn" jdbcType="INTEGER" />
+    <result column="current_hr_high_limit" property="currentHrHighLimit" jdbcType="INTEGER" />
+    <result column="current_hr_low_limit" property="currentHrLowLimit" jdbcType="INTEGER" />
+    <result column="current_hr_on" property="currentHrOn" jdbcType="INTEGER" />
+    <result column="current_move_on" property="currentMoveOn" jdbcType="INTEGER" />
+    <result column="current_patient_admitted" property="currentPatientAdmitted" jdbcType="VARCHAR" />
+    <result column="current_patient_id" property="currentPatientId" jdbcType="VARCHAR" />
+    <result column="current_rr_high_limit" property="currentRrHighLimit" jdbcType="INTEGER" />
+    <result column="current_rr_low_limit" property="currentRrLowLimit" jdbcType="INTEGER" />
+    <result column="current_rr_on" property="currentRrOn" jdbcType="INTEGER" />
+    <result column="current_turn_duration" property="currentTurnDuration" jdbcType="INTEGER" />
+    <result column="current_turn_on" property="currentTurnOn" jdbcType="INTEGER" />
+    <result column="current_pause_active" property="currentPauseActive" jdbcType="INTEGER" />
+    <result column="current_chair_duration" property="currentChairDuration" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from ldm_eqp_insight_config
+    where seq_id = #{seqId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.lachesis.windranger.ldm.dbmodel.LdmEqpInsightConfig" >
+    insert into ldm_eqp_insight_config (seq_id, eqp_mac, current_bed_duration, 
+      current_bex_on, current_hr_high_limit, current_hr_low_limit, 
+      current_hr_on, current_move_on, current_patient_admitted, 
+      current_patient_id, current_rr_high_limit, current_rr_low_limit, 
+      current_rr_on, current_turn_duration, current_turn_on, 
+      current_pause_active, current_chair_duration, 
+      create_time, update_time)
+    values (#{seqId,jdbcType=BIGINT}, #{eqpMac,jdbcType=VARCHAR}, #{currentBedDuration,jdbcType=INTEGER}, 
+      #{currentBexOn,jdbcType=INTEGER}, #{currentHrHighLimit,jdbcType=INTEGER}, #{currentHrLowLimit,jdbcType=INTEGER}, 
+      #{currentHrOn,jdbcType=INTEGER}, #{currentMoveOn,jdbcType=INTEGER}, #{currentPatientAdmitted,jdbcType=VARCHAR}, 
+      #{currentPatientId,jdbcType=VARCHAR}, #{currentRrHighLimit,jdbcType=INTEGER}, #{currentRrLowLimit,jdbcType=INTEGER}, 
+      #{currentRrOn,jdbcType=INTEGER}, #{currentTurnDuration,jdbcType=INTEGER}, #{currentTurnOn,jdbcType=INTEGER}, 
+      #{currentPauseActive,jdbcType=INTEGER}, #{currentChairDuration,jdbcType=INTEGER}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.lachesis.windranger.ldm.dbmodel.LdmEqpInsightConfig" >
+    update ldm_eqp_insight_config
+    set eqp_mac = #{eqpMac,jdbcType=VARCHAR},
+      current_bed_duration = #{currentBedDuration,jdbcType=INTEGER},
+      current_bex_on = #{currentBexOn,jdbcType=INTEGER},
+      current_hr_high_limit = #{currentHrHighLimit,jdbcType=INTEGER},
+      current_hr_low_limit = #{currentHrLowLimit,jdbcType=INTEGER},
+      current_hr_on = #{currentHrOn,jdbcType=INTEGER},
+      current_move_on = #{currentMoveOn,jdbcType=INTEGER},
+      current_patient_admitted = #{currentPatientAdmitted,jdbcType=VARCHAR},
+      current_patient_id = #{currentPatientId,jdbcType=VARCHAR},
+      current_rr_high_limit = #{currentRrHighLimit,jdbcType=INTEGER},
+      current_rr_low_limit = #{currentRrLowLimit,jdbcType=INTEGER},
+      current_rr_on = #{currentRrOn,jdbcType=INTEGER},
+      current_turn_duration = #{currentTurnDuration,jdbcType=INTEGER},
+      current_turn_on = #{currentTurnOn,jdbcType=INTEGER},
+      current_pause_active = #{currentPauseActive,jdbcType=INTEGER},
+      current_chair_duration = #{currentChairDuration,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where seq_id = #{seqId,jdbcType=BIGINT}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select seq_id, eqp_mac, current_bed_duration, current_bex_on, current_hr_high_limit, 
+    current_hr_low_limit, current_hr_on, current_move_on, current_patient_admitted, current_patient_id, 
+    current_rr_high_limit, current_rr_low_limit, current_rr_on, current_turn_duration, 
+    current_turn_on, current_pause_active, current_chair_duration, create_time, update_time
+    from ldm_eqp_insight_config
+    where seq_id = #{seqId,jdbcType=BIGINT}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select seq_id, eqp_mac, current_bed_duration, current_bex_on, current_hr_high_limit, 
+    current_hr_low_limit, current_hr_on, current_move_on, current_patient_admitted, current_patient_id, 
+    current_rr_high_limit, current_rr_low_limit, current_rr_on, current_turn_duration, 
+    current_turn_on, current_pause_active, current_chair_duration, create_time, update_time
+    from ldm_eqp_insight_config
+  </select>
+  <delete id="removeKeysWithSession" parameterType="java.util.List" >
+    delete from ldm_eqp_insight_config where seq_id IN <foreach close=")" collection="list" index="index" item="item" open="(" separator=","> #{item} </foreach>
+  </delete>
+  <delete id="deleteByBean" parameterType="java.lang.Long" >
+    delete from ldm_eqp_insight_config where 1=1 
+    <if test="seqId!=null" >
+      and seq_id = #{seqId,jdbcType=BIGINT}
+    </if>
+    <if test="eqpMac!=null" >
+      and eqp_mac = #{eqpMac,jdbcType=VARCHAR}
+    </if>
+    <if test="currentBedDuration!=null" >
+      and current_bed_duration = #{currentBedDuration,jdbcType=INTEGER}
+    </if>
+    <if test="currentBexOn!=null" >
+      and current_bex_on = #{currentBexOn,jdbcType=INTEGER}
+    </if>
+    <if test="currentHrHighLimit!=null" >
+      and current_hr_high_limit = #{currentHrHighLimit,jdbcType=INTEGER}
+    </if>
+    <if test="currentHrLowLimit!=null" >
+      and current_hr_low_limit = #{currentHrLowLimit,jdbcType=INTEGER}
+    </if>
+    <if test="currentHrOn!=null" >
+      and current_hr_on = #{currentHrOn,jdbcType=INTEGER}
+    </if>
+    <if test="currentMoveOn!=null" >
+      and current_move_on = #{currentMoveOn,jdbcType=INTEGER}
+    </if>
+    <if test="currentPatientAdmitted!=null" >
+      and current_patient_admitted = #{currentPatientAdmitted,jdbcType=VARCHAR}
+    </if>
+    <if test="currentPatientId!=null" >
+      and current_patient_id = #{currentPatientId,jdbcType=VARCHAR}
+    </if>
+    <if test="currentRrHighLimit!=null" >
+      and current_rr_high_limit = #{currentRrHighLimit,jdbcType=INTEGER}
+    </if>
+    <if test="currentRrLowLimit!=null" >
+      and current_rr_low_limit = #{currentRrLowLimit,jdbcType=INTEGER}
+    </if>
+    <if test="currentRrOn!=null" >
+      and current_rr_on = #{currentRrOn,jdbcType=INTEGER}
+    </if>
+    <if test="currentTurnDuration!=null" >
+      and current_turn_duration = #{currentTurnDuration,jdbcType=INTEGER}
+    </if>
+    <if test="currentTurnOn!=null" >
+      and current_turn_on = #{currentTurnOn,jdbcType=INTEGER}
+    </if>
+    <if test="currentPauseActive!=null" >
+      and current_pause_active = #{currentPauseActive,jdbcType=INTEGER}
+    </if>
+    <if test="currentChairDuration!=null" >
+      and current_chair_duration = #{currentChairDuration,jdbcType=INTEGER}
+    </if>
+    <if test="createTime!=null" >
+      and create_time = #{createTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="updateTime!=null" >
+      and update_time = #{updateTime,jdbcType=TIMESTAMP}
+    </if>
+  </delete>
+  <insert parameterType="com.lachesis.windranger.ldm.dbmodel.LdmEqpInsightConfig" id="insertAndReturnKey" keyProperty="seqId" useGeneratedKeys="true" >
+    insert into ldm_eqp_insight_config (seq_id, eqp_mac, current_bed_duration, 
+      current_bex_on, current_hr_high_limit, current_hr_low_limit, 
+      current_hr_on, current_move_on, current_patient_admitted, 
+      current_patient_id, current_rr_high_limit, current_rr_low_limit, 
+      current_rr_on, current_turn_duration, current_turn_on, 
+      current_pause_active, current_chair_duration, 
+      create_time, update_time)
+    values (#{seqId,jdbcType=BIGINT}, #{eqpMac,jdbcType=VARCHAR}, #{currentBedDuration,jdbcType=INTEGER}, 
+      #{currentBexOn,jdbcType=INTEGER}, #{currentHrHighLimit,jdbcType=INTEGER}, #{currentHrLowLimit,jdbcType=INTEGER}, 
+      #{currentHrOn,jdbcType=INTEGER}, #{currentMoveOn,jdbcType=INTEGER}, #{currentPatientAdmitted,jdbcType=VARCHAR}, 
+      #{currentPatientId,jdbcType=VARCHAR}, #{currentRrHighLimit,jdbcType=INTEGER}, #{currentRrLowLimit,jdbcType=INTEGER}, 
+      #{currentRrOn,jdbcType=INTEGER}, #{currentTurnDuration,jdbcType=INTEGER}, #{currentTurnOn,jdbcType=INTEGER}, 
+      #{currentPauseActive,jdbcType=INTEGER}, #{currentChairDuration,jdbcType=INTEGER}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lachesis.windranger.ldm.dbmodel.LdmEqpInsightConfig" >
+    update ldm_eqp_insight_config set
+    <trim suffixOverrides="," >
+      <if test="eqpMac != null" >
+        eqp_mac = #{eqpMac,jdbcType=VARCHAR},
+      </if>
+      <if test="currentBedDuration != null" >
+        current_bed_duration = #{currentBedDuration,jdbcType=INTEGER},
+      </if>
+      <if test="currentBexOn != null" >
+        current_bex_on = #{currentBexOn,jdbcType=INTEGER},
+      </if>
+      <if test="currentHrHighLimit != null" >
+        current_hr_high_limit = #{currentHrHighLimit,jdbcType=INTEGER},
+      </if>
+      <if test="currentHrLowLimit != null" >
+        current_hr_low_limit = #{currentHrLowLimit,jdbcType=INTEGER},
+      </if>
+      <if test="currentHrOn != null" >
+        current_hr_on = #{currentHrOn,jdbcType=INTEGER},
+      </if>
+      <if test="currentMoveOn != null" >
+        current_move_on = #{currentMoveOn,jdbcType=INTEGER},
+      </if>
+      <if test="currentPatientAdmitted != null" >
+        current_patient_admitted = #{currentPatientAdmitted,jdbcType=VARCHAR},
+      </if>
+      <if test="currentPatientId != null" >
+        current_patient_id = #{currentPatientId,jdbcType=VARCHAR},
+      </if>
+      <if test="currentRrHighLimit != null" >
+        current_rr_high_limit = #{currentRrHighLimit,jdbcType=INTEGER},
+      </if>
+      <if test="currentRrLowLimit != null" >
+        current_rr_low_limit = #{currentRrLowLimit,jdbcType=INTEGER},
+      </if>
+      <if test="currentRrOn != null" >
+        current_rr_on = #{currentRrOn,jdbcType=INTEGER},
+      </if>
+      <if test="currentTurnDuration != null" >
+        current_turn_duration = #{currentTurnDuration,jdbcType=INTEGER},
+      </if>
+      <if test="currentTurnOn != null" >
+        current_turn_on = #{currentTurnOn,jdbcType=INTEGER},
+      </if>
+      <if test="currentPauseActive != null" >
+        current_pause_active = #{currentPauseActive,jdbcType=INTEGER},
+      </if>
+      <if test="currentChairDuration != null" >
+        current_chair_duration = #{currentChairDuration,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP}
+      </if>
+    </trim>
+     where seq_id = #{seqId,jdbcType=BIGINT}
+  </update>
+  <select id="selectByBean" resultMap="BaseResultMap" parameterType="com.lachesis.windranger.ldm.dbmodel.LdmEqpInsightConfig" >
+    select * from ldm_eqp_insight_config where 1=1 
+    <if test="seqId!=null" >
+      and seq_id = #{seqId,jdbcType=BIGINT}
+    </if>
+    <if test="eqpMac!=null" >
+      and eqp_mac = #{eqpMac,jdbcType=VARCHAR}
+    </if>
+    <if test="currentBedDuration!=null" >
+      and current_bed_duration = #{currentBedDuration,jdbcType=INTEGER}
+    </if>
+    <if test="currentBexOn!=null" >
+      and current_bex_on = #{currentBexOn,jdbcType=INTEGER}
+    </if>
+    <if test="currentHrHighLimit!=null" >
+      and current_hr_high_limit = #{currentHrHighLimit,jdbcType=INTEGER}
+    </if>
+    <if test="currentHrLowLimit!=null" >
+      and current_hr_low_limit = #{currentHrLowLimit,jdbcType=INTEGER}
+    </if>
+    <if test="currentHrOn!=null" >
+      and current_hr_on = #{currentHrOn,jdbcType=INTEGER}
+    </if>
+    <if test="currentMoveOn!=null" >
+      and current_move_on = #{currentMoveOn,jdbcType=INTEGER}
+    </if>
+    <if test="currentPatientAdmitted!=null" >
+      and current_patient_admitted = #{currentPatientAdmitted,jdbcType=VARCHAR}
+    </if>
+    <if test="currentPatientId!=null" >
+      and current_patient_id = #{currentPatientId,jdbcType=VARCHAR}
+    </if>
+    <if test="currentRrHighLimit!=null" >
+      and current_rr_high_limit = #{currentRrHighLimit,jdbcType=INTEGER}
+    </if>
+    <if test="currentRrLowLimit!=null" >
+      and current_rr_low_limit = #{currentRrLowLimit,jdbcType=INTEGER}
+    </if>
+    <if test="currentRrOn!=null" >
+      and current_rr_on = #{currentRrOn,jdbcType=INTEGER}
+    </if>
+    <if test="currentTurnDuration!=null" >
+      and current_turn_duration = #{currentTurnDuration,jdbcType=INTEGER}
+    </if>
+    <if test="currentTurnOn!=null" >
+      and current_turn_on = #{currentTurnOn,jdbcType=INTEGER}
+    </if>
+    <if test="currentPauseActive!=null" >
+      and current_pause_active = #{currentPauseActive,jdbcType=INTEGER}
+    </if>
+    <if test="currentChairDuration!=null" >
+      and current_chair_duration = #{currentChairDuration,jdbcType=INTEGER}
+    </if>
+    <if test="createTime!=null" >
+      and create_time = #{createTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="updateTime!=null" >
+      and update_time = #{updateTime,jdbcType=TIMESTAMP}
+    </if>
+  </select>
+  <select id="countByBean" resultType="int" parameterType="com.lachesis.windranger.ldm.dbmodel.LdmEqpInsightConfig" >
+    select count(0) from ldm_eqp_insight_config where 1=1 
+    <if test="seqId!=null" >
+      and seq_id = #{seqId,jdbcType=BIGINT}
+    </if>
+    <if test="eqpMac!=null" >
+      and eqp_mac = #{eqpMac,jdbcType=VARCHAR}
+    </if>
+    <if test="currentBedDuration!=null" >
+      and current_bed_duration = #{currentBedDuration,jdbcType=INTEGER}
+    </if>
+    <if test="currentBexOn!=null" >
+      and current_bex_on = #{currentBexOn,jdbcType=INTEGER}
+    </if>
+    <if test="currentHrHighLimit!=null" >
+      and current_hr_high_limit = #{currentHrHighLimit,jdbcType=INTEGER}
+    </if>
+    <if test="currentHrLowLimit!=null" >
+      and current_hr_low_limit = #{currentHrLowLimit,jdbcType=INTEGER}
+    </if>
+    <if test="currentHrOn!=null" >
+      and current_hr_on = #{currentHrOn,jdbcType=INTEGER}
+    </if>
+    <if test="currentMoveOn!=null" >
+      and current_move_on = #{currentMoveOn,jdbcType=INTEGER}
+    </if>
+    <if test="currentPatientAdmitted!=null" >
+      and current_patient_admitted = #{currentPatientAdmitted,jdbcType=VARCHAR}
+    </if>
+    <if test="currentPatientId!=null" >
+      and current_patient_id = #{currentPatientId,jdbcType=VARCHAR}
+    </if>
+    <if test="currentRrHighLimit!=null" >
+      and current_rr_high_limit = #{currentRrHighLimit,jdbcType=INTEGER}
+    </if>
+    <if test="currentRrLowLimit!=null" >
+      and current_rr_low_limit = #{currentRrLowLimit,jdbcType=INTEGER}
+    </if>
+    <if test="currentRrOn!=null" >
+      and current_rr_on = #{currentRrOn,jdbcType=INTEGER}
+    </if>
+    <if test="currentTurnDuration!=null" >
+      and current_turn_duration = #{currentTurnDuration,jdbcType=INTEGER}
+    </if>
+    <if test="currentTurnOn!=null" >
+      and current_turn_on = #{currentTurnOn,jdbcType=INTEGER}
+    </if>
+    <if test="currentPauseActive!=null" >
+      and current_pause_active = #{currentPauseActive,jdbcType=INTEGER}
+    </if>
+    <if test="currentChairDuration!=null" >
+      and current_chair_duration = #{currentChairDuration,jdbcType=INTEGER}
+    </if>
+    <if test="createTime!=null" >
+      and create_time = #{createTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="updateTime!=null" >
+      and update_time = #{updateTime,jdbcType=TIMESTAMP}
+    </if>
+  </select>
+</mapper>

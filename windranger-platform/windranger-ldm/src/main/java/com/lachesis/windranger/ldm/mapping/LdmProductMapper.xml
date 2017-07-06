@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lachesis.windranger.ldm.dao.LdmProductMapper" >
+  <resultMap id="BaseResultMap" type="com.lachesis.windranger.ldm.dbmodel.LdmProduct" >
+    <id column="seq_id" property="seqId" jdbcType="BIGINT" />
+    <result column="prod_res_code" property="prodResCode" jdbcType="VARCHAR" />
+    <result column="prod_name" property="prodName" jdbcType="VARCHAR" />
+    <result column="prod_version" property="prodVersion" jdbcType="VARCHAR" />
+    <result column="prod_runtime_stat" property="prodRuntimeStat" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="create_person" property="createPerson" jdbcType="VARCHAR" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="update_person" property="updatePerson" jdbcType="VARCHAR" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from ldm_product
+    where seq_id = #{seqId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.lachesis.windranger.ldm.dbmodel.LdmProduct" >
+    insert into ldm_product (seq_id, prod_res_code, prod_name, 
+      prod_version, prod_runtime_stat, create_time, 
+      create_person, update_time, update_person
+      )
+    values (#{seqId,jdbcType=BIGINT}, #{prodResCode,jdbcType=VARCHAR}, #{prodName,jdbcType=VARCHAR}, 
+      #{prodVersion,jdbcType=VARCHAR}, #{prodRuntimeStat,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{createPerson,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}, #{updatePerson,jdbcType=VARCHAR}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.lachesis.windranger.ldm.dbmodel.LdmProduct" >
+    update ldm_product
+    set prod_res_code = #{prodResCode,jdbcType=VARCHAR},
+      prod_name = #{prodName,jdbcType=VARCHAR},
+      prod_version = #{prodVersion,jdbcType=VARCHAR},
+      prod_runtime_stat = #{prodRuntimeStat,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      create_person = #{createPerson,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      update_person = #{updatePerson,jdbcType=VARCHAR}
+    where seq_id = #{seqId,jdbcType=BIGINT}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select seq_id, prod_res_code, prod_name, prod_version, prod_runtime_stat, create_time, 
+    create_person, update_time, update_person
+    from ldm_product
+    where seq_id = #{seqId,jdbcType=BIGINT}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select seq_id, prod_res_code, prod_name, prod_version, prod_runtime_stat, create_time, 
+    create_person, update_time, update_person
+    from ldm_product
+  </select>
+  <delete id="removeKeysWithSession" parameterType="java.util.List" >
+    delete from ldm_product where seq_id IN <foreach close=")" collection="list" index="index" item="item" open="(" separator=","> #{item} </foreach>
+  </delete>
+  <delete id="deleteByBean" parameterType="java.lang.Long" >
+    delete from ldm_product where 1=1 
+    <if test="seqId!=null" >
+      and seq_id = #{seqId,jdbcType=BIGINT}
+    </if>
+    <if test="prodResCode!=null" >
+      and prod_res_code = #{prodResCode,jdbcType=VARCHAR}
+    </if>
+    <if test="prodName!=null" >
+      and prod_name = #{prodName,jdbcType=VARCHAR}
+    </if>
+    <if test="prodVersion!=null" >
+      and prod_version = #{prodVersion,jdbcType=VARCHAR}
+    </if>
+    <if test="prodRuntimeStat!=null" >
+      and prod_runtime_stat = #{prodRuntimeStat,jdbcType=INTEGER}
+    </if>
+    <if test="createTime!=null" >
+      and create_time = #{createTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="createPerson!=null" >
+      and create_person = #{createPerson,jdbcType=VARCHAR}
+    </if>
+    <if test="updateTime!=null" >
+      and update_time = #{updateTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="updatePerson!=null" >
+      and update_person = #{updatePerson,jdbcType=VARCHAR}
+    </if>
+  </delete>
+  <insert parameterType="com.lachesis.windranger.ldm.dbmodel.LdmProduct" id="insertAndReturnKey" keyProperty="seqId" useGeneratedKeys="true" >
+    insert into ldm_product (seq_id, prod_res_code, prod_name, 
+      prod_version, prod_runtime_stat, create_time, 
+      create_person, update_time, update_person
+      )
+    values (#{seqId,jdbcType=BIGINT}, #{prodResCode,jdbcType=VARCHAR}, #{prodName,jdbcType=VARCHAR}, 
+      #{prodVersion,jdbcType=VARCHAR}, #{prodRuntimeStat,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{createPerson,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}, #{updatePerson,jdbcType=VARCHAR}
+      )
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lachesis.windranger.ldm.dbmodel.LdmProduct" >
+    update ldm_product set
+    <trim suffixOverrides="," >
+      <if test="prodResCode != null" >
+        prod_res_code = #{prodResCode,jdbcType=VARCHAR},
+      </if>
+      <if test="prodName != null" >
+        prod_name = #{prodName,jdbcType=VARCHAR},
+      </if>
+      <if test="prodVersion != null" >
+        prod_version = #{prodVersion,jdbcType=VARCHAR},
+      </if>
+      <if test="prodRuntimeStat != null" >
+        prod_runtime_stat = #{prodRuntimeStat,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createPerson != null" >
+        create_person = #{createPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatePerson != null" >
+        update_person = #{updatePerson,jdbcType=VARCHAR}
+      </if>
+    </trim>
+     where seq_id = #{seqId,jdbcType=BIGINT}
+  </update>
+  <select id="selectByBean" resultMap="BaseResultMap" parameterType="com.lachesis.windranger.ldm.dbmodel.LdmProduct" >
+    select * from ldm_product where 1=1 
+    <if test="seqId!=null" >
+      and seq_id = #{seqId,jdbcType=BIGINT}
+    </if>
+    <if test="prodResCode!=null" >
+      and prod_res_code = #{prodResCode,jdbcType=VARCHAR}
+    </if>
+    <if test="prodName!=null" >
+      and prod_name = #{prodName,jdbcType=VARCHAR}
+    </if>
+    <if test="prodVersion!=null" >
+      and prod_version = #{prodVersion,jdbcType=VARCHAR}
+    </if>
+    <if test="prodRuntimeStat!=null" >
+      and prod_runtime_stat = #{prodRuntimeStat,jdbcType=INTEGER}
+    </if>
+    <if test="createTime!=null" >
+      and create_time = #{createTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="createPerson!=null" >
+      and create_person = #{createPerson,jdbcType=VARCHAR}
+    </if>
+    <if test="updateTime!=null" >
+      and update_time = #{updateTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="updatePerson!=null" >
+      and update_person = #{updatePerson,jdbcType=VARCHAR}
+    </if>
+  </select>
+  <select id="countByBean" resultType="int" parameterType="com.lachesis.windranger.ldm.dbmodel.LdmProduct" >
+    select count(0) from ldm_product where 1=1 
+    <if test="seqId!=null" >
+      and seq_id = #{seqId,jdbcType=BIGINT}
+    </if>
+    <if test="prodResCode!=null" >
+      and prod_res_code = #{prodResCode,jdbcType=VARCHAR}
+    </if>
+    <if test="prodName!=null" >
+      and prod_name = #{prodName,jdbcType=VARCHAR}
+    </if>
+    <if test="prodVersion!=null" >
+      and prod_version = #{prodVersion,jdbcType=VARCHAR}
+    </if>
+    <if test="prodRuntimeStat!=null" >
+      and prod_runtime_stat = #{prodRuntimeStat,jdbcType=INTEGER}
+    </if>
+    <if test="createTime!=null" >
+      and create_time = #{createTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="createPerson!=null" >
+      and create_person = #{createPerson,jdbcType=VARCHAR}
+    </if>
+    <if test="updateTime!=null" >
+      and update_time = #{updateTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="updatePerson!=null" >
+      and update_person = #{updatePerson,jdbcType=VARCHAR}
+    </if>
+  </select>
+</mapper>

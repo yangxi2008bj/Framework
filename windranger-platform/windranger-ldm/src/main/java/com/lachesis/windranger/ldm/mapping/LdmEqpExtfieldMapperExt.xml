@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lachesis.windranger.ldm.dao.LdmEqpExtfieldMapperExt" >
+	<select id="getLdmEqpExtfieldByBean" resultType="com.lachesis.windranger.ldm.dbmodel.LdmEqpExtfield" parameterType="com.lachesis.windranger.ldm.dbmodel.LdmEqpExtfield" >
+    select * from ldm_eqp_extfield
+    where 1 = 1
+    <if test="eqpMac != null and eqpMac != ''">
+		AND eqp_mac='${eqpMac}'
+	</if>
+    <if test="eqpSn != null and eqpSn != ''">
+		AND eqp_sn='${eqpSn}'
+	</if>
+	<if test="field != null and field != ''">
+		AND field='${field}'
+	</if>	
+  </select>
+</mapper>

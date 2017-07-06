@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lachesis.windranger.ldm.dao.LdmEqpBatMapperExt" >
+	<select id="getLdmEqpBat" resultType="com.lachesis.windranger.ldm.dbmodel.LdmEqpBatExt" parameterType="com.lachesis.windranger.ldm.dbmodel.LdmEqpBat" >
+	select A.eqp_mac, A.eqp_sn, A.charge_status, A.`res_cap`, B.name chargeStatusVO, A.`create_time`, A.`update_time` 
+	from ldm_eqp_bat A, ldm_eqp_code B where A.`charge_status`=B.`code`
+    <if test="eqpMac != null and eqpMac != ''">
+		AND A.eqp_mac='${eqpMac}'
+	</if>
+    <if test="eqpSn != null and eqpSn != ''">
+		AND A.eqp_sn='${eqpSn}'
+	</if>
+	 limit 1
+  </select>
+</mapper>

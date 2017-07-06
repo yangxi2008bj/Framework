@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lachesis.windranger.ldm.dao.LdmProductServerMapper" >
+  <resultMap id="BaseResultMap" type="com.lachesis.windranger.ldm.dbmodel.LdmProductServer" >
+    <id column="seq_id" property="seqId" jdbcType="BIGINT" />
+    <result column="prod_seq_id" property="prodSeqId" jdbcType="BIGINT" />
+    <result column="server_code" property="serverCode" jdbcType="VARCHAR" />
+    <result column="service_code" property="serviceCode" jdbcType="VARCHAR" />
+    <result column="db_service_code" property="dbServiceCode" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from ldm_product_server
+    where seq_id = #{seqId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.lachesis.windranger.ldm.dbmodel.LdmProductServer" >
+    insert into ldm_product_server (seq_id, prod_seq_id, server_code, 
+      service_code, db_service_code, create_time, 
+      update_time)
+    values (#{seqId,jdbcType=BIGINT}, #{prodSeqId,jdbcType=BIGINT}, #{serverCode,jdbcType=VARCHAR}, 
+      #{serviceCode,jdbcType=VARCHAR}, #{dbServiceCode,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.lachesis.windranger.ldm.dbmodel.LdmProductServer" >
+    update ldm_product_server
+    set prod_seq_id = #{prodSeqId,jdbcType=BIGINT},
+      server_code = #{serverCode,jdbcType=VARCHAR},
+      service_code = #{serviceCode,jdbcType=VARCHAR},
+      db_service_code = #{dbServiceCode,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where seq_id = #{seqId,jdbcType=BIGINT}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select seq_id, prod_seq_id, server_code, service_code, db_service_code, create_time, 
+    update_time
+    from ldm_product_server
+    where seq_id = #{seqId,jdbcType=BIGINT}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select seq_id, prod_seq_id, server_code, service_code, db_service_code, create_time, 
+    update_time
+    from ldm_product_server
+  </select>
+  <delete id="removeKeysWithSession" parameterType="java.util.List" >
+    delete from ldm_product_server where seq_id IN <foreach close=")" collection="list" index="index" item="item" open="(" separator=","> #{item} </foreach>
+  </delete>
+  <delete id="deleteByBean" parameterType="java.lang.Long" >
+    delete from ldm_product_server where 1=1 
+    <if test="seqId!=null" >
+      and seq_id = #{seqId,jdbcType=BIGINT}
+    </if>
+    <if test="prodSeqId!=null" >
+      and prod_seq_id = #{prodSeqId,jdbcType=BIGINT}
+    </if>
+    <if test="serverCode!=null" >
+      and server_code = #{serverCode,jdbcType=VARCHAR}
+    </if>
+    <if test="serviceCode!=null" >
+      and service_code = #{serviceCode,jdbcType=VARCHAR}
+    </if>
+    <if test="dbServiceCode!=null" >
+      and db_service_code = #{dbServiceCode,jdbcType=VARCHAR}
+    </if>
+    <if test="createTime!=null" >
+      and create_time = #{createTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="updateTime!=null" >
+      and update_time = #{updateTime,jdbcType=TIMESTAMP}
+    </if>
+  </delete>
+  <insert parameterType="com.lachesis.windranger.ldm.dbmodel.LdmProductServer" id="insertAndReturnKey" keyProperty="seqId" useGeneratedKeys="true" >
+    insert into ldm_product_server (seq_id, prod_seq_id, server_code, 
+      service_code, db_service_code, create_time, 
+      update_time)
+    values (#{seqId,jdbcType=BIGINT}, #{prodSeqId,jdbcType=BIGINT}, #{serverCode,jdbcType=VARCHAR}, 
+      #{serviceCode,jdbcType=VARCHAR}, #{dbServiceCode,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lachesis.windranger.ldm.dbmodel.LdmProductServer" >
+    update ldm_product_server set
+    <trim suffixOverrides="," >
+      <if test="prodSeqId != null" >
+        prod_seq_id = #{prodSeqId,jdbcType=BIGINT},
+      </if>
+      <if test="serverCode != null" >
+        server_code = #{serverCode,jdbcType=VARCHAR},
+      </if>
+      <if test="serviceCode != null" >
+        service_code = #{serviceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="dbServiceCode != null" >
+        db_service_code = #{dbServiceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP}
+      </if>
+    </trim>
+     where seq_id = #{seqId,jdbcType=BIGINT}
+  </update>
+  <select id="selectByBean" resultMap="BaseResultMap" parameterType="com.lachesis.windranger.ldm.dbmodel.LdmProductServer" >
+    select * from ldm_product_server where 1=1 
+    <if test="seqId!=null" >
+      and seq_id = #{seqId,jdbcType=BIGINT}
+    </if>
+    <if test="prodSeqId!=null" >
+      and prod_seq_id = #{prodSeqId,jdbcType=BIGINT}
+    </if>
+    <if test="serverCode!=null" >
+      and server_code = #{serverCode,jdbcType=VARCHAR}
+    </if>
+    <if test="serviceCode!=null" >
+      and service_code = #{serviceCode,jdbcType=VARCHAR}
+    </if>
+    <if test="dbServiceCode!=null" >
+      and db_service_code = #{dbServiceCode,jdbcType=VARCHAR}
+    </if>
+    <if test="createTime!=null" >
+      and create_time = #{createTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="updateTime!=null" >
+      and update_time = #{updateTime,jdbcType=TIMESTAMP}
+    </if>
+  </select>
+  <select id="countByBean" resultType="int" parameterType="com.lachesis.windranger.ldm.dbmodel.LdmProductServer" >
+    select count(0) from ldm_product_server where 1=1 
+    <if test="seqId!=null" >
+      and seq_id = #{seqId,jdbcType=BIGINT}
+    </if>
+    <if test="prodSeqId!=null" >
+      and prod_seq_id = #{prodSeqId,jdbcType=BIGINT}
+    </if>
+    <if test="serverCode!=null" >
+      and server_code = #{serverCode,jdbcType=VARCHAR}
+    </if>
+    <if test="serviceCode!=null" >
+      and service_code = #{serviceCode,jdbcType=VARCHAR}
+    </if>
+    <if test="dbServiceCode!=null" >
+      and db_service_code = #{dbServiceCode,jdbcType=VARCHAR}
+    </if>
+    <if test="createTime!=null" >
+      and create_time = #{createTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="updateTime!=null" >
+      and update_time = #{updateTime,jdbcType=TIMESTAMP}
+    </if>
+  </select>
+</mapper>

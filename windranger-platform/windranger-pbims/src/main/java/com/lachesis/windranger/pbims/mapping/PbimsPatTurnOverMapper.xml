@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lachesis.windranger.pbims.dao.PbimsPatTurnOverMapper" >
+  <resultMap id="BaseResultMap" type="com.lachesis.windranger.pbims.dbmodel.PbimsPatTurnOver" >
+    <id column="seq_id" property="seqId" jdbcType="BIGINT" />
+    <result column="pat_code" property="patCode" jdbcType="VARCHAR" />
+    <result column="record_time" property="recordTime" jdbcType="TIMESTAMP" />
+    <result column="event_type" property="eventType" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="create_person" property="createPerson" jdbcType="VARCHAR" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="update_person" property="updatePerson" jdbcType="VARCHAR" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from pbims_pat_turn_over
+    where seq_id = #{seqId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.lachesis.windranger.pbims.dbmodel.PbimsPatTurnOver" >
+    insert into pbims_pat_turn_over (seq_id, pat_code, record_time, 
+      event_type, status, create_time, 
+      create_person, update_time, update_person
+      )
+    values (#{seqId,jdbcType=BIGINT}, #{patCode,jdbcType=VARCHAR}, #{recordTime,jdbcType=TIMESTAMP}, 
+      #{eventType,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{createPerson,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}, #{updatePerson,jdbcType=VARCHAR}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.lachesis.windranger.pbims.dbmodel.PbimsPatTurnOver" >
+    update pbims_pat_turn_over
+    set pat_code = #{patCode,jdbcType=VARCHAR},
+      record_time = #{recordTime,jdbcType=TIMESTAMP},
+      event_type = #{eventType,jdbcType=INTEGER},
+      status = #{status,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      create_person = #{createPerson,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      update_person = #{updatePerson,jdbcType=VARCHAR}
+    where seq_id = #{seqId,jdbcType=BIGINT}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select seq_id, pat_code, record_time, event_type, status, create_time, create_person, 
+    update_time, update_person
+    from pbims_pat_turn_over
+    where seq_id = #{seqId,jdbcType=BIGINT}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select seq_id, pat_code, record_time, event_type, status, create_time, create_person, 
+    update_time, update_person
+    from pbims_pat_turn_over
+  </select>
+  <delete id="removeKeysWithSession" parameterType="java.util.List" >
+    delete from pbims_pat_turn_over where seq_id IN <foreach close=")" collection="list" index="index" item="item" open="(" separator=","> #{item} </foreach>
+  </delete>
+  <delete id="deleteByBean" parameterType="java.lang.Long" >
+    delete from pbims_pat_turn_over where 1=1 
+    <if test="seqId!=null" >
+      and seq_id = #{seqId,jdbcType=BIGINT}
+    </if>
+    <if test="patCode!=null" >
+      and pat_code = #{patCode,jdbcType=VARCHAR}
+    </if>
+    <if test="recordTime!=null" >
+      and record_time = #{recordTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="eventType!=null" >
+      and event_type = #{eventType,jdbcType=INTEGER}
+    </if>
+    <if test="status!=null" >
+      and status = #{status,jdbcType=INTEGER}
+    </if>
+    <if test="createTime!=null" >
+      and create_time = #{createTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="createPerson!=null" >
+      and create_person = #{createPerson,jdbcType=VARCHAR}
+    </if>
+    <if test="updateTime!=null" >
+      and update_time = #{updateTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="updatePerson!=null" >
+      and update_person = #{updatePerson,jdbcType=VARCHAR}
+    </if>
+  </delete>
+  <insert parameterType="com.lachesis.windranger.pbims.dbmodel.PbimsPatTurnOver" id="insertAndReturnKey" keyProperty="seqId" useGeneratedKeys="true" >
+    insert into pbims_pat_turn_over (seq_id, pat_code, record_time, 
+      event_type, status, create_time, 
+      create_person, update_time, update_person
+      )
+    values (#{seqId,jdbcType=BIGINT}, #{patCode,jdbcType=VARCHAR}, #{recordTime,jdbcType=TIMESTAMP}, 
+      #{eventType,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{createPerson,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}, #{updatePerson,jdbcType=VARCHAR}
+      )
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lachesis.windranger.pbims.dbmodel.PbimsPatTurnOver" >
+    update pbims_pat_turn_over set
+    <trim suffixOverrides="," >
+      <if test="patCode != null" >
+        pat_code = #{patCode,jdbcType=VARCHAR},
+      </if>
+      <if test="recordTime != null" >
+        record_time = #{recordTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="eventType != null" >
+        event_type = #{eventType,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createPerson != null" >
+        create_person = #{createPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatePerson != null" >
+        update_person = #{updatePerson,jdbcType=VARCHAR}
+      </if>
+    </trim>
+     where seq_id = #{seqId,jdbcType=BIGINT}
+  </update>
+  <select id="selectByBean" resultMap="BaseResultMap" parameterType="com.lachesis.windranger.pbims.dbmodel.PbimsPatTurnOver" >
+    select * from pbims_pat_turn_over where 1=1 
+    <if test="seqId!=null" >
+      and seq_id = #{seqId,jdbcType=BIGINT}
+    </if>
+    <if test="patCode!=null" >
+      and pat_code = #{patCode,jdbcType=VARCHAR}
+    </if>
+    <if test="recordTime!=null" >
+      and record_time = #{recordTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="eventType!=null" >
+      and event_type = #{eventType,jdbcType=INTEGER}
+    </if>
+    <if test="status!=null" >
+      and status = #{status,jdbcType=INTEGER}
+    </if>
+    <if test="createTime!=null" >
+      and create_time = #{createTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="createPerson!=null" >
+      and create_person = #{createPerson,jdbcType=VARCHAR}
+    </if>
+    <if test="updateTime!=null" >
+      and update_time = #{updateTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="updatePerson!=null" >
+      and update_person = #{updatePerson,jdbcType=VARCHAR}
+    </if>
+  </select>
+  <select id="countByBean" resultType="int" parameterType="com.lachesis.windranger.pbims.dbmodel.PbimsPatTurnOver" >
+    select count(0) from pbims_pat_turn_over where 1=1 
+    <if test="seqId!=null" >
+      and seq_id = #{seqId,jdbcType=BIGINT}
+    </if>
+    <if test="patCode!=null" >
+      and pat_code = #{patCode,jdbcType=VARCHAR}
+    </if>
+    <if test="recordTime!=null" >
+      and record_time = #{recordTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="eventType!=null" >
+      and event_type = #{eventType,jdbcType=INTEGER}
+    </if>
+    <if test="status!=null" >
+      and status = #{status,jdbcType=INTEGER}
+    </if>
+    <if test="createTime!=null" >
+      and create_time = #{createTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="createPerson!=null" >
+      and create_person = #{createPerson,jdbcType=VARCHAR}
+    </if>
+    <if test="updateTime!=null" >
+      and update_time = #{updateTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="updatePerson!=null" >
+      and update_person = #{updatePerson,jdbcType=VARCHAR}
+    </if>
+  </select>
+</mapper>

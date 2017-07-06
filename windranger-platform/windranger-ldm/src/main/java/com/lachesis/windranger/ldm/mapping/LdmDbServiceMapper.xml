@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lachesis.windranger.ldm.dao.LdmDbServiceMapper" >
+  <resultMap id="BaseResultMap" type="com.lachesis.windranger.ldm.dbmodel.LdmDbService" >
+    <id column="seq_id" property="seqId" jdbcType="BIGINT" />
+    <result column="db_service_code" property="dbServiceCode" jdbcType="VARCHAR" />
+    <result column="db_service_name" property="dbServiceName" jdbcType="VARCHAR" />
+    <result column="db_type" property="dbType" jdbcType="VARCHAR" />
+    <result column="ip" property="ip" jdbcType="INTEGER" />
+    <result column="db_user" property="dbUser" jdbcType="VARCHAR" />
+    <result column="db_pass" property="dbPass" jdbcType="VARCHAR" />
+    <result column="db_status" property="dbStatus" jdbcType="INTEGER" />
+    <result column="db_connect_sql" property="dbConnectSql" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="create_person" property="createPerson" jdbcType="VARCHAR" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="update_person" property="updatePerson" jdbcType="VARCHAR" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from ldm_db_service
+    where seq_id = #{seqId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.lachesis.windranger.ldm.dbmodel.LdmDbService" >
+    insert into ldm_db_service (seq_id, db_service_code, db_service_name, 
+      db_type, ip, db_user, 
+      db_pass, db_status, db_connect_sql, 
+      create_time, create_person, update_time, 
+      update_person)
+    values (#{seqId,jdbcType=BIGINT}, #{dbServiceCode,jdbcType=VARCHAR}, #{dbServiceName,jdbcType=VARCHAR}, 
+      #{dbType,jdbcType=VARCHAR}, #{ip,jdbcType=INTEGER}, #{dbUser,jdbcType=VARCHAR}, 
+      #{dbPass,jdbcType=VARCHAR}, #{dbStatus,jdbcType=INTEGER}, #{dbConnectSql,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{createPerson,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{updatePerson,jdbcType=VARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.lachesis.windranger.ldm.dbmodel.LdmDbService" >
+    update ldm_db_service
+    set db_service_code = #{dbServiceCode,jdbcType=VARCHAR},
+      db_service_name = #{dbServiceName,jdbcType=VARCHAR},
+      db_type = #{dbType,jdbcType=VARCHAR},
+      ip = #{ip,jdbcType=INTEGER},
+      db_user = #{dbUser,jdbcType=VARCHAR},
+      db_pass = #{dbPass,jdbcType=VARCHAR},
+      db_status = #{dbStatus,jdbcType=INTEGER},
+      db_connect_sql = #{dbConnectSql,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      create_person = #{createPerson,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      update_person = #{updatePerson,jdbcType=VARCHAR}
+    where seq_id = #{seqId,jdbcType=BIGINT}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select seq_id, db_service_code, db_service_name, db_type, ip, db_user, db_pass, db_status, 
+    db_connect_sql, create_time, create_person, update_time, update_person
+    from ldm_db_service
+    where seq_id = #{seqId,jdbcType=BIGINT}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select seq_id, db_service_code, db_service_name, db_type, ip, db_user, db_pass, db_status, 
+    db_connect_sql, create_time, create_person, update_time, update_person
+    from ldm_db_service
+  </select>
+  <delete id="removeKeysWithSession" parameterType="java.util.List" >
+    delete from ldm_db_service where seq_id IN <foreach close=")" collection="list" index="index" item="item" open="(" separator=","> #{item} </foreach>
+  </delete>
+  <delete id="deleteByBean" parameterType="java.lang.Long" >
+    delete from ldm_db_service where 1=1 
+    <if test="seqId!=null" >
+      and seq_id = #{seqId,jdbcType=BIGINT}
+    </if>
+    <if test="dbServiceCode!=null" >
+      and db_service_code = #{dbServiceCode,jdbcType=VARCHAR}
+    </if>
+    <if test="dbServiceName!=null" >
+      and db_service_name = #{dbServiceName,jdbcType=VARCHAR}
+    </if>
+    <if test="dbType!=null" >
+      and db_type = #{dbType,jdbcType=VARCHAR}
+    </if>
+    <if test="ip!=null" >
+      and ip = #{ip,jdbcType=INTEGER}
+    </if>
+    <if test="dbUser!=null" >
+      and db_user = #{dbUser,jdbcType=VARCHAR}
+    </if>
+    <if test="dbPass!=null" >
+      and db_pass = #{dbPass,jdbcType=VARCHAR}
+    </if>
+    <if test="dbStatus!=null" >
+      and db_status = #{dbStatus,jdbcType=INTEGER}
+    </if>
+    <if test="dbConnectSql!=null" >
+      and db_connect_sql = #{dbConnectSql,jdbcType=VARCHAR}
+    </if>
+    <if test="createTime!=null" >
+      and create_time = #{createTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="createPerson!=null" >
+      and create_person = #{createPerson,jdbcType=VARCHAR}
+    </if>
+    <if test="updateTime!=null" >
+      and update_time = #{updateTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="updatePerson!=null" >
+      and update_person = #{updatePerson,jdbcType=VARCHAR}
+    </if>
+  </delete>
+  <insert parameterType="com.lachesis.windranger.ldm.dbmodel.LdmDbService" id="insertAndReturnKey" keyProperty="seqId" useGeneratedKeys="true" >
+    insert into ldm_db_service (seq_id, db_service_code, db_service_name, 
+      db_type, ip, db_user, 
+      db_pass, db_status, db_connect_sql, 
+      create_time, create_person, update_time, 
+      update_person)
+    values (#{seqId,jdbcType=BIGINT}, #{dbServiceCode,jdbcType=VARCHAR}, #{dbServiceName,jdbcType=VARCHAR}, 
+      #{dbType,jdbcType=VARCHAR}, #{ip,jdbcType=INTEGER}, #{dbUser,jdbcType=VARCHAR}, 
+      #{dbPass,jdbcType=VARCHAR}, #{dbStatus,jdbcType=INTEGER}, #{dbConnectSql,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{createPerson,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{updatePerson,jdbcType=VARCHAR})
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lachesis.windranger.ldm.dbmodel.LdmDbService" >
+    update ldm_db_service set
+    <trim suffixOverrides="," >
+      <if test="dbServiceCode != null" >
+        db_service_code = #{dbServiceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="dbServiceName != null" >
+        db_service_name = #{dbServiceName,jdbcType=VARCHAR},
+      </if>
+      <if test="dbType != null" >
+        db_type = #{dbType,jdbcType=VARCHAR},
+      </if>
+      <if test="ip != null" >
+        ip = #{ip,jdbcType=INTEGER},
+      </if>
+      <if test="dbUser != null" >
+        db_user = #{dbUser,jdbcType=VARCHAR},
+      </if>
+      <if test="dbPass != null" >
+        db_pass = #{dbPass,jdbcType=VARCHAR},
+      </if>
+      <if test="dbStatus != null" >
+        db_status = #{dbStatus,jdbcType=INTEGER},
+      </if>
+      <if test="dbConnectSql != null" >
+        db_connect_sql = #{dbConnectSql,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createPerson != null" >
+        create_person = #{createPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatePerson != null" >
+        update_person = #{updatePerson,jdbcType=VARCHAR}
+      </if>
+    </trim>
+     where seq_id = #{seqId,jdbcType=BIGINT}
+  </update>
+  <select id="selectByBean" resultMap="BaseResultMap" parameterType="com.lachesis.windranger.ldm.dbmodel.LdmDbService" >
+    select * from ldm_db_service where 1=1 
+    <if test="seqId!=null" >
+      and seq_id = #{seqId,jdbcType=BIGINT}
+    </if>
+    <if test="dbServiceCode!=null" >
+      and db_service_code = #{dbServiceCode,jdbcType=VARCHAR}
+    </if>
+    <if test="dbServiceName!=null" >
+      and db_service_name = #{dbServiceName,jdbcType=VARCHAR}
+    </if>
+    <if test="dbType!=null" >
+      and db_type = #{dbType,jdbcType=VARCHAR}
+    </if>
+    <if test="ip!=null" >
+      and ip = #{ip,jdbcType=INTEGER}
+    </if>
+    <if test="dbUser!=null" >
+      and db_user = #{dbUser,jdbcType=VARCHAR}
+    </if>
+    <if test="dbPass!=null" >
+      and db_pass = #{dbPass,jdbcType=VARCHAR}
+    </if>
+    <if test="dbStatus!=null" >
+      and db_status = #{dbStatus,jdbcType=INTEGER}
+    </if>
+    <if test="dbConnectSql!=null" >
+      and db_connect_sql = #{dbConnectSql,jdbcType=VARCHAR}
+    </if>
+    <if test="createTime!=null" >
+      and create_time = #{createTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="createPerson!=null" >
+      and create_person = #{createPerson,jdbcType=VARCHAR}
+    </if>
+    <if test="updateTime!=null" >
+      and update_time = #{updateTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="updatePerson!=null" >
+      and update_person = #{updatePerson,jdbcType=VARCHAR}
+    </if>
+  </select>
+  <select id="countByBean" resultType="int" parameterType="com.lachesis.windranger.ldm.dbmodel.LdmDbService" >
+    select count(0) from ldm_db_service where 1=1 
+    <if test="seqId!=null" >
+      and seq_id = #{seqId,jdbcType=BIGINT}
+    </if>
+    <if test="dbServiceCode!=null" >
+      and db_service_code = #{dbServiceCode,jdbcType=VARCHAR}
+    </if>
+    <if test="dbServiceName!=null" >
+      and db_service_name = #{dbServiceName,jdbcType=VARCHAR}
+    </if>
+    <if test="dbType!=null" >
+      and db_type = #{dbType,jdbcType=VARCHAR}
+    </if>
+    <if test="ip!=null" >
+      and ip = #{ip,jdbcType=INTEGER}
+    </if>
+    <if test="dbUser!=null" >
+      and db_user = #{dbUser,jdbcType=VARCHAR}
+    </if>
+    <if test="dbPass!=null" >
+      and db_pass = #{dbPass,jdbcType=VARCHAR}
+    </if>
+    <if test="dbStatus!=null" >
+      and db_status = #{dbStatus,jdbcType=INTEGER}
+    </if>
+    <if test="dbConnectSql!=null" >
+      and db_connect_sql = #{dbConnectSql,jdbcType=VARCHAR}
+    </if>
+    <if test="createTime!=null" >
+      and create_time = #{createTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="createPerson!=null" >
+      and create_person = #{createPerson,jdbcType=VARCHAR}
+    </if>
+    <if test="updateTime!=null" >
+      and update_time = #{updateTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="updatePerson!=null" >
+      and update_person = #{updatePerson,jdbcType=VARCHAR}
+    </if>
+  </select>
+</mapper>

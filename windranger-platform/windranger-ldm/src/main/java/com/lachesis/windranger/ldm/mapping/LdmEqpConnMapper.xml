@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lachesis.windranger.ldm.dao.LdmEqpConnMapper" >
+  <resultMap id="BaseResultMap" type="com.lachesis.windranger.ldm.dbmodel.LdmEqpConn" >
+    <id column="seq_id" property="seqId" jdbcType="BIGINT" />
+    <result column="eqp_mac" property="eqpMac" jdbcType="VARCHAR" />
+    <result column="eqp_sn" property="eqpSn" jdbcType="VARCHAR" />
+    <result column="net_status" property="netStatus" jdbcType="INTEGER" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="operation_time" property="operationTime" jdbcType="INTEGER" />
+    <result column="eqp_mes" property="eqpMes" jdbcType="VARCHAR" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from ldm_eqp_conn
+    where seq_id = #{seqId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.lachesis.windranger.ldm.dbmodel.LdmEqpConn" >
+    insert into ldm_eqp_conn (seq_id, eqp_mac, eqp_sn, 
+      net_status, update_time, operation_time, 
+      eqp_mes)
+    values (#{seqId,jdbcType=BIGINT}, #{eqpMac,jdbcType=VARCHAR}, #{eqpSn,jdbcType=VARCHAR}, 
+      #{netStatus,jdbcType=INTEGER}, #{updateTime,jdbcType=TIMESTAMP}, #{operationTime,jdbcType=INTEGER}, 
+      #{eqpMes,jdbcType=VARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.lachesis.windranger.ldm.dbmodel.LdmEqpConn" >
+    update ldm_eqp_conn
+    set eqp_mac = #{eqpMac,jdbcType=VARCHAR},
+      eqp_sn = #{eqpSn,jdbcType=VARCHAR},
+      net_status = #{netStatus,jdbcType=INTEGER},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      operation_time = #{operationTime,jdbcType=INTEGER},
+      eqp_mes = #{eqpMes,jdbcType=VARCHAR}
+    where seq_id = #{seqId,jdbcType=BIGINT}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select seq_id, eqp_mac, eqp_sn, net_status, update_time, operation_time, eqp_mes
+    from ldm_eqp_conn
+    where seq_id = #{seqId,jdbcType=BIGINT}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select seq_id, eqp_mac, eqp_sn, net_status, update_time, operation_time, eqp_mes
+    from ldm_eqp_conn
+  </select>
+  <delete id="removeKeysWithSession" parameterType="java.util.List" >
+    delete from ldm_eqp_conn where seq_id IN <foreach close=")" collection="list" index="index" item="item" open="(" separator=","> #{item} </foreach>
+  </delete>
+  <delete id="deleteByBean" parameterType="java.lang.Long" >
+    delete from ldm_eqp_conn where 1=1 
+    <if test="seqId!=null" >
+      and seq_id = #{seqId,jdbcType=BIGINT}
+    </if>
+    <if test="eqpMac!=null" >
+      and eqp_mac = #{eqpMac,jdbcType=VARCHAR}
+    </if>
+    <if test="eqpSn!=null" >
+      and eqp_sn = #{eqpSn,jdbcType=VARCHAR}
+    </if>
+    <if test="netStatus!=null" >
+      and net_status = #{netStatus,jdbcType=INTEGER}
+    </if>
+    <if test="updateTime!=null" >
+      and update_time = #{updateTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="operationTime!=null" >
+      and operation_time = #{operationTime,jdbcType=INTEGER}
+    </if>
+    <if test="eqpMes!=null" >
+      and eqp_mes = #{eqpMes,jdbcType=VARCHAR}
+    </if>
+  </delete>
+  <insert parameterType="com.lachesis.windranger.ldm.dbmodel.LdmEqpConn" id="insertAndReturnKey" keyProperty="seqId" useGeneratedKeys="true" >
+    insert into ldm_eqp_conn (seq_id, eqp_mac, eqp_sn, 
+      net_status, update_time, operation_time, 
+      eqp_mes)
+    values (#{seqId,jdbcType=BIGINT}, #{eqpMac,jdbcType=VARCHAR}, #{eqpSn,jdbcType=VARCHAR}, 
+      #{netStatus,jdbcType=INTEGER}, #{updateTime,jdbcType=TIMESTAMP}, #{operationTime,jdbcType=INTEGER}, 
+      #{eqpMes,jdbcType=VARCHAR})
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lachesis.windranger.ldm.dbmodel.LdmEqpConn" >
+    update ldm_eqp_conn set
+    <trim suffixOverrides="," >
+      <if test="eqpMac != null" >
+        eqp_mac = #{eqpMac,jdbcType=VARCHAR},
+      </if>
+      <if test="eqpSn != null" >
+        eqp_sn = #{eqpSn,jdbcType=VARCHAR},
+      </if>
+      <if test="netStatus != null" >
+        net_status = #{netStatus,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="operationTime != null" >
+        operation_time = #{operationTime,jdbcType=INTEGER},
+      </if>
+      <if test="eqpMes != null" >
+        eqp_mes = #{eqpMes,jdbcType=VARCHAR}
+      </if>
+    </trim>
+     where seq_id = #{seqId,jdbcType=BIGINT}
+  </update>
+  <select id="selectByBean" resultMap="BaseResultMap" parameterType="com.lachesis.windranger.ldm.dbmodel.LdmEqpConn" >
+    select * from ldm_eqp_conn where 1=1 
+    <if test="seqId!=null" >
+      and seq_id = #{seqId,jdbcType=BIGINT}
+    </if>
+    <if test="eqpMac!=null" >
+      and eqp_mac = #{eqpMac,jdbcType=VARCHAR}
+    </if>
+    <if test="eqpSn!=null" >
+      and eqp_sn = #{eqpSn,jdbcType=VARCHAR}
+    </if>
+    <if test="netStatus!=null" >
+      and net_status = #{netStatus,jdbcType=INTEGER}
+    </if>
+    <if test="updateTime!=null" >
+      and update_time = #{updateTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="operationTime!=null" >
+      and operation_time = #{operationTime,jdbcType=INTEGER}
+    </if>
+    <if test="eqpMes!=null" >
+      and eqp_mes = #{eqpMes,jdbcType=VARCHAR}
+    </if>
+  </select>
+  <select id="countByBean" resultType="int" parameterType="com.lachesis.windranger.ldm.dbmodel.LdmEqpConn" >
+    select count(0) from ldm_eqp_conn where 1=1 
+    <if test="seqId!=null" >
+      and seq_id = #{seqId,jdbcType=BIGINT}
+    </if>
+    <if test="eqpMac!=null" >
+      and eqp_mac = #{eqpMac,jdbcType=VARCHAR}
+    </if>
+    <if test="eqpSn!=null" >
+      and eqp_sn = #{eqpSn,jdbcType=VARCHAR}
+    </if>
+    <if test="netStatus!=null" >
+      and net_status = #{netStatus,jdbcType=INTEGER}
+    </if>
+    <if test="updateTime!=null" >
+      and update_time = #{updateTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="operationTime!=null" >
+      and operation_time = #{operationTime,jdbcType=INTEGER}
+    </if>
+    <if test="eqpMes!=null" >
+      and eqp_mes = #{eqpMes,jdbcType=VARCHAR}
+    </if>
+  </select>
+</mapper>

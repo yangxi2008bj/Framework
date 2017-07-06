@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lachesis.windranger.ldm.dao.LdmServiceMapperExt" >
+	<select id="selectByProductSeqId" resultType="com.lachesis.windranger.ldm.dbmodel.LdmService" parameterType="java.lang.Long" >
+    	select distinct A.seq_id, A.service_code, A.deploy_ip, A.deploy_port, A.lastes_start_date, A.restart_times, 
+    	A.total_run_time, A.jvm_memory, A.jvm_memory_use_rate, A.cur_req_times, A.cur_req_ave_resp_time, 
+    	A.cur_max_concurrency, A.total_req_times, A.total_req_ave_resp_time, A.total_max_concurrency, 
+    	A.create_time, A.create_person, A.update_time, A.update_person
+    	from ldm_service A, ldm_product_server B
+    	where A.service_code = B.service_code AND B.prod_seq_id = #{prodSeqId,jdbcType=BIGINT}
+    </select>
+    
+    <select id="getCountProductSeqId" resultType="java.lang.Integer" parameterType="java.lang.Long" >
+    	select count(1)
+    	from ldm_service A, ldm_product_server B
+    	where A.service_code = B.service_code AND B.prod_seq_id = #{prodSeqId,jdbcType=BIGINT}
+    </select>
+    
+</mapper>

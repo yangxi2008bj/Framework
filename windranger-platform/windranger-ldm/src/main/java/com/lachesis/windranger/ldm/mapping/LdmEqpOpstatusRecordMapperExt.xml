@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lachesis.windranger.ldm.dao.LdmEqpOpstatusRecordMapperExt" >
+  <select id="getLdmEqpOpTotalTime" resultType="java.lang.Integer" parameterType="com.lachesis.windranger.ldm.dbmodel.LdmEqpOpstatusRecord" >
+    select sum(A.operation_time) eqpOpTotal
+    from ldm_eqp_opstatus_record A where 1=1 
+    <if test="eqpMac != null and eqpMac != ''">
+		AND A.eqp_mac='${eqpMac}'
+	</if>
+    <if test="eqpSn != null and eqpSn != ''">
+		AND A.eqp_sn='${eqpSn}'
+	</if>
+  </select>
+</mapper>

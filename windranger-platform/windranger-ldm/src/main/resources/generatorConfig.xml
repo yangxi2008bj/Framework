@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
+
+<generatorConfiguration>
+
+	<context id="authenticationContext" targetRuntime="MyBatis3Simple"
+		defaultModelType="flat">
+
+		<property name="mergeable" value="true" />
+		<property name="javaFileEncoding" value="UTF-8" />
+
+		<plugin type="com.lachesis.mybatis.plugin.FileGeneratorPlugin">
+			<property name="rootDaoInterface"
+				value="com.lachesis.windranger.common.model.ICrudGenericDAO" />
+		</plugin>
+
+		<commentGenerator type="com.lachesis.mybatis.plugin.FileCommentGenerator">
+			<property name="suppressAllComments" value="false" />
+			<property name="suppressDate" value="true" />
+		</commentGenerator>
+
+		<!-- 数据库链接URL、用户名、密码 -->
+		<jdbcConnection driverClass="com.mysql.jdbc.Driver"
+			connectionURL="jdbc:mysql://10.2.3.96:3306/earlysense?characterEncoding=utf8"
+			userId="user" password="123456">
+
+			<property name="useInformationSchema" value="true" />
+		</jdbcConnection>
+
+		<javaTypeResolver>
+			<property name="forceBigDecimals" value="false" />
+		</javaTypeResolver>
+
+		<!-- 生成模型的包名和位置 -->
+		<javaModelGenerator targetPackage="com.lachesis.windranger.ldm.dbmodel"
+			targetProject="src/main/java">
+			<property name="enableSubPackages" value="true" />
+			<property name="trimStrings" value="true" />
+			<property name="rootClass"
+				value="com.lachesis.windranger.common.model.ValuedBean" />
+		</javaModelGenerator>
+
+		<!-- 生成的映射文件包名和位置 -->
+		<sqlMapGenerator targetPackage="com.lachesis.windranger.ldm.mapping"
+			targetProject="src/main/java">
+			<property name="enableSubPackages" value="true" />
+		</sqlMapGenerator>
+
+		<!-- 生成DAO的包名和位置 -->
+		<javaClientGenerator type="XMLMAPPER"
+			targetPackage="com.lachesis.windranger.ldm.dao"
+			targetProject="src/main/java">
+
+			<property name="enableSubPackages" value="true" />
+			<property name="rootInterface"
+				value="com.lachesis.windranger.common.model.ICrudGenericDAO" />
+			<property name="rootClass"
+				value="com.lachesis.windranger.common.model.ValuedBean" />
+
+		</javaClientGenerator>
+
+		<!-- 要生成那些表(更改tableName和domainObjectName就可以) -->
+<!-- 		<table tableName="ldm_eqp_bat" domainObjectName="LdmEqpBat" /> -->
+<!-- 		<table tableName="ldm_eqp_code" domainObjectName="LdmEqpCode"/> -->
+<!-- 		<table tableName="ldm_eqp_conn" domainObjectName="LdmEqpConn"/> -->
+<!-- 		<table tableName="ldm_eqp_error" domainObjectName="LdmEqpError"/>			 -->
+<!-- 		<table tableName="ldm_eqp_extfield" domainObjectName="LdmEqpExtfield"/> -->
+<!-- 			<table tableName="ldm_eqp_info" domainObjectName="LdmEqpInfo"/> -->
+<!-- 		<table tableName="ldm_eqp_opstatus" domainObjectName="LdmEqpOpstatus"/> -->
+<!-- 		<table tableName="ldm_eqp_log" domainObjectName="LdmEqpLog"/> -->
+
+<!-- 		<table tableName="ldm_eqp_opstatus_record" domainObjectName="LdmEqpOpstatusRecord"/> -->
+<!-- 		<table tableName="ldm_eqp_conn_record" domainObjectName="LdmEqpConnRecord"/> -->
+<!-- 		<table tableName="ldm_eqp_bat_record" domainObjectName="LdmEqpBatRecord"/>  -->
+		
+<!-- 		<table tableName="eqp_copy_signs" domainObjectName="EqpCopySigns"/> -->
+<!-- 		<table tableName="ldm_eqp_gather_data" domainObjectName="LdmEqpGatherData"/> -->
+<!-- 		<table tableName="ldm_eqp_location" domainObjectName="LdmEqpLocation"/> -->
+<!-- 		<table tableName="ldm_eqp_pat" domainObjectName="LdmEqpPat"/> -->
+<!-- 		<table tableName="ldm_eqp_receive_info" domainObjectName="LdmEqpReceiveInfo"/> -->
+<!-- 		<table tableName="ldm_eqp_type" domainObjectName="LdmEqpType"/> -->
+		
+				
+<!-- 		<table tableName="ldm_db_service" domainObjectName="LdmDbService"/> -->
+<!-- 		<table tableName="ldm_product" domainObjectName="LdmProduct"/> -->
+<!-- 		<table tableName="ldm_server" domainObjectName="LdmServer"/> -->
+<!-- 		<table tableName="ldm_service" domainObjectName="LdmService"/> -->
+<!-- 		<table tableName="ldm_product_server" domainObjectName="LdmProductServer"/> -->
+		
+<!-- 		<table tableName="ldm_eqp_insight_config" domainObjectName="LdmEqpInsightConfig"/> -->
+<!-- 		<table tableName="ldm_eqp_patient_reading" domainObjectName="LdmEqpPatientReading"/> -->
+		<table tableName="ldm_eqp_patient_reading_rt" domainObjectName="LdmEqpPatientReadingRt"/>
+<!-- 			<table tableName="device" domainObjectName="Device"/> -->
+<!-- 			<table tableName="device_alias" domainObjectName="DeviceAlias"/> -->
+	</context>
+
+
+
+
+</generatorConfiguration>

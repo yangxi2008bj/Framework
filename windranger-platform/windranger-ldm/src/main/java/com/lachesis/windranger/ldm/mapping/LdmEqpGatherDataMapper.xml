@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lachesis.windranger.ldm.dao.LdmEqpGatherDataMapper" >
+  <resultMap id="BaseResultMap" type="com.lachesis.windranger.ldm.dbmodel.LdmEqpGatherData" >
+    <id column="seq_id" property="seqId" jdbcType="BIGINT" />
+    <result column="data_code" property="dataCode" jdbcType="VARCHAR" />
+    <result column="data_type" property="dataType" jdbcType="VARCHAR" />
+    <result column="eqp_code" property="eqpCode" jdbcType="VARCHAR" />
+    <result column="gather_time" property="gatherTime" jdbcType="TIMESTAMP" />
+    <result column="value" property="value" jdbcType="DECIMAL" />
+    <result column="is_copy" property="isCopy" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="create_person" property="createPerson" jdbcType="VARCHAR" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="update_person" property="updatePerson" jdbcType="VARCHAR" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from ldm_eqp_gather_data
+    where seq_id = #{seqId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.lachesis.windranger.ldm.dbmodel.LdmEqpGatherData" >
+    insert into ldm_eqp_gather_data (seq_id, data_code, data_type, 
+      eqp_code, gather_time, value, 
+      is_copy, status, create_time, 
+      create_person, update_time, update_person
+      )
+    values (#{seqId,jdbcType=BIGINT}, #{dataCode,jdbcType=VARCHAR}, #{dataType,jdbcType=VARCHAR}, 
+      #{eqpCode,jdbcType=VARCHAR}, #{gatherTime,jdbcType=TIMESTAMP}, #{value,jdbcType=DECIMAL}, 
+      #{isCopy,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{createPerson,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}, #{updatePerson,jdbcType=VARCHAR}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.lachesis.windranger.ldm.dbmodel.LdmEqpGatherData" >
+    update ldm_eqp_gather_data
+    set data_code = #{dataCode,jdbcType=VARCHAR},
+      data_type = #{dataType,jdbcType=VARCHAR},
+      eqp_code = #{eqpCode,jdbcType=VARCHAR},
+      gather_time = #{gatherTime,jdbcType=TIMESTAMP},
+      value = #{value,jdbcType=DECIMAL},
+      is_copy = #{isCopy,jdbcType=INTEGER},
+      status = #{status,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      create_person = #{createPerson,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      update_person = #{updatePerson,jdbcType=VARCHAR}
+    where seq_id = #{seqId,jdbcType=BIGINT}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select seq_id, data_code, data_type, eqp_code, gather_time, value, is_copy, status, 
+    create_time, create_person, update_time, update_person
+    from ldm_eqp_gather_data
+    where seq_id = #{seqId,jdbcType=BIGINT}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select seq_id, data_code, data_type, eqp_code, gather_time, value, is_copy, status, 
+    create_time, create_person, update_time, update_person
+    from ldm_eqp_gather_data
+  </select>
+  <delete id="removeKeysWithSession" parameterType="java.util.List" >
+    delete from ldm_eqp_gather_data where seq_id IN <foreach close=")" collection="list" index="index" item="item" open="(" separator=","> #{item} </foreach>
+  </delete>
+  <delete id="deleteByBean" parameterType="java.lang.Long" >
+    delete from ldm_eqp_gather_data where 1=1 
+    <if test="seqId!=null" >
+      and seq_id = #{seqId,jdbcType=BIGINT}
+    </if>
+    <if test="dataCode!=null" >
+      and data_code = #{dataCode,jdbcType=VARCHAR}
+    </if>
+    <if test="dataType!=null" >
+      and data_type = #{dataType,jdbcType=VARCHAR}
+    </if>
+    <if test="eqpCode!=null" >
+      and eqp_code = #{eqpCode,jdbcType=VARCHAR}
+    </if>
+    <if test="gatherTime!=null" >
+      and gather_time = #{gatherTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="value!=null" >
+      and value = #{value,jdbcType=DECIMAL}
+    </if>
+    <if test="isCopy!=null" >
+      and is_copy = #{isCopy,jdbcType=INTEGER}
+    </if>
+    <if test="status!=null" >
+      and status = #{status,jdbcType=INTEGER}
+    </if>
+    <if test="createTime!=null" >
+      and create_time = #{createTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="createPerson!=null" >
+      and create_person = #{createPerson,jdbcType=VARCHAR}
+    </if>
+    <if test="updateTime!=null" >
+      and update_time = #{updateTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="updatePerson!=null" >
+      and update_person = #{updatePerson,jdbcType=VARCHAR}
+    </if>
+  </delete>
+  <insert parameterType="com.lachesis.windranger.ldm.dbmodel.LdmEqpGatherData" id="insertAndReturnKey" keyProperty="seqId" useGeneratedKeys="true" >
+    insert into ldm_eqp_gather_data (seq_id, data_code, data_type, 
+      eqp_code, gather_time, value, 
+      is_copy, status, create_time, 
+      create_person, update_time, update_person
+      )
+    values (#{seqId,jdbcType=BIGINT}, #{dataCode,jdbcType=VARCHAR}, #{dataType,jdbcType=VARCHAR}, 
+      #{eqpCode,jdbcType=VARCHAR}, #{gatherTime,jdbcType=TIMESTAMP}, #{value,jdbcType=DECIMAL}, 
+      #{isCopy,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{createPerson,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}, #{updatePerson,jdbcType=VARCHAR}
+      )
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lachesis.windranger.ldm.dbmodel.LdmEqpGatherData" >
+    update ldm_eqp_gather_data set
+    <trim suffixOverrides="," >
+      <if test="dataCode != null" >
+        data_code = #{dataCode,jdbcType=VARCHAR},
+      </if>
+      <if test="dataType != null" >
+        data_type = #{dataType,jdbcType=VARCHAR},
+      </if>
+      <if test="eqpCode != null" >
+        eqp_code = #{eqpCode,jdbcType=VARCHAR},
+      </if>
+      <if test="gatherTime != null" >
+        gather_time = #{gatherTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="value != null" >
+        value = #{value,jdbcType=DECIMAL},
+      </if>
+      <if test="isCopy != null" >
+        is_copy = #{isCopy,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createPerson != null" >
+        create_person = #{createPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatePerson != null" >
+        update_person = #{updatePerson,jdbcType=VARCHAR}
+      </if>
+    </trim>
+     where seq_id = #{seqId,jdbcType=BIGINT}
+  </update>
+  <select id="selectByBean" resultMap="BaseResultMap" parameterType="com.lachesis.windranger.ldm.dbmodel.LdmEqpGatherData" >
+    select * from ldm_eqp_gather_data where 1=1 
+    <if test="seqId!=null" >
+      and seq_id = #{seqId,jdbcType=BIGINT}
+    </if>
+    <if test="dataCode!=null" >
+      and data_code = #{dataCode,jdbcType=VARCHAR}
+    </if>
+    <if test="dataType!=null" >
+      and data_type = #{dataType,jdbcType=VARCHAR}
+    </if>
+    <if test="eqpCode!=null" >
+      and eqp_code = #{eqpCode,jdbcType=VARCHAR}
+    </if>
+    <if test="gatherTime!=null" >
+      and gather_time = #{gatherTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="value!=null" >
+      and value = #{value,jdbcType=DECIMAL}
+    </if>
+    <if test="isCopy!=null" >
+      and is_copy = #{isCopy,jdbcType=INTEGER}
+    </if>
+    <if test="status!=null" >
+      and status = #{status,jdbcType=INTEGER}
+    </if>
+    <if test="createTime!=null" >
+      and create_time = #{createTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="createPerson!=null" >
+      and create_person = #{createPerson,jdbcType=VARCHAR}
+    </if>
+    <if test="updateTime!=null" >
+      and update_time = #{updateTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="updatePerson!=null" >
+      and update_person = #{updatePerson,jdbcType=VARCHAR}
+    </if>
+  </select>
+  <select id="countByBean" resultType="int" parameterType="com.lachesis.windranger.ldm.dbmodel.LdmEqpGatherData" >
+    select count(0) from ldm_eqp_gather_data where 1=1 
+    <if test="seqId!=null" >
+      and seq_id = #{seqId,jdbcType=BIGINT}
+    </if>
+    <if test="dataCode!=null" >
+      and data_code = #{dataCode,jdbcType=VARCHAR}
+    </if>
+    <if test="dataType!=null" >
+      and data_type = #{dataType,jdbcType=VARCHAR}
+    </if>
+    <if test="eqpCode!=null" >
+      and eqp_code = #{eqpCode,jdbcType=VARCHAR}
+    </if>
+    <if test="gatherTime!=null" >
+      and gather_time = #{gatherTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="value!=null" >
+      and value = #{value,jdbcType=DECIMAL}
+    </if>
+    <if test="isCopy!=null" >
+      and is_copy = #{isCopy,jdbcType=INTEGER}
+    </if>
+    <if test="status!=null" >
+      and status = #{status,jdbcType=INTEGER}
+    </if>
+    <if test="createTime!=null" >
+      and create_time = #{createTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="createPerson!=null" >
+      and create_person = #{createPerson,jdbcType=VARCHAR}
+    </if>
+    <if test="updateTime!=null" >
+      and update_time = #{updateTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="updatePerson!=null" >
+      and update_person = #{updatePerson,jdbcType=VARCHAR}
+    </if>
+  </select>
+</mapper>

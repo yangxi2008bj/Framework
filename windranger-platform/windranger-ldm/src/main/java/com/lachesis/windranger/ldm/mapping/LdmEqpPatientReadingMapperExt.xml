@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lachesis.windranger.ldm.dao.LdmEqpPatientReadingMapperExt" >
+  <select id="selectHrByTime" resultType="com.lachesis.windranger.ldm.dbmodel.LdmEqpPatientReading">
+    select hr, rr, movement_level, create_time
+    from ldm_eqp_patient_reading
+    where eqp_mac = #{0} and create_time > DATE_SUB(NOW(), INTERVAL #{1} MINUTE)
+  </select>
+</mapper>

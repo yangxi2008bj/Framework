@@ -1,0 +1,433 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lachesis.windranger.ldm.dao.LdmEqpPatientReadingRtMapper" >
+  <resultMap id="BaseResultMap" type="com.lachesis.windranger.ldm.dbmodel.LdmEqpPatientReadingRt" >
+    <id column="seq_id" property="seqId" jdbcType="BIGINT" />
+    <result column="eqp_mac" property="eqpMac" jdbcType="VARCHAR" />
+    <result column="sensorport" property="sensorport" jdbcType="VARCHAR" />
+    <result column="sensor_type" property="sensorType" jdbcType="INTEGER" />
+    <result column="hr" property="hr" jdbcType="INTEGER" />
+    <result column="rr" property="rr" jdbcType="INTEGER" />
+    <result column="movement_level" property="movementLevel" jdbcType="INTEGER" />
+    <result column="movement_index" property="movementIndex" jdbcType="INTEGER" />
+    <result column="rest_in_level" property="restInLevel" jdbcType="INTEGER" />
+    <result column="time_in_bed" property="timeInBed" jdbcType="INTEGER" />
+    <result column="turn_countup" property="turnCountup" jdbcType="INTEGER" />
+    <result column="in_bed" property="inBed" jdbcType="INTEGER" />
+    <result column="signal_quality" property="signalQuality" jdbcType="INTEGER" />
+    <result column="bex_charging" property="bexCharging" jdbcType="INTEGER" />
+    <result column="alert_message" property="alertMessage" jdbcType="VARCHAR" />
+    <result column="hr_alert" property="hrAlert" jdbcType="INTEGER" />
+    <result column="rr_alert" property="rrAlert" jdbcType="INTEGER" />
+    <result column="move_alert" property="moveAlert" jdbcType="INTEGER" />
+    <result column="turnover_alert" property="turnoverAlert" jdbcType="INTEGER" />
+    <result column="not_inbed_alert" property="notInbedAlert" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="turnover_count" property="turnoverCount" jdbcType="INTEGER" />
+    <result column="not_inbed_count" property="notInbedCount" jdbcType="INTEGER" />
+    <result column="isconnect" property="isconnect" jdbcType="INTEGER" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from ldm_eqp_patient_reading_rt
+    where seq_id = #{seqId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.lachesis.windranger.ldm.dbmodel.LdmEqpPatientReadingRt" >
+    insert into ldm_eqp_patient_reading_rt (seq_id, eqp_mac, sensorport, 
+      sensor_type, hr, rr, 
+      movement_level, movement_index, rest_in_level, 
+      time_in_bed, turn_countup, in_bed, 
+      signal_quality, bex_charging, alert_message, 
+      hr_alert, rr_alert, move_alert, 
+      turnover_alert, not_inbed_alert, create_time, 
+      update_time, turnover_count, not_inbed_count, 
+      isconnect)
+    values (#{seqId,jdbcType=BIGINT}, #{eqpMac,jdbcType=VARCHAR}, #{sensorport,jdbcType=VARCHAR}, 
+      #{sensorType,jdbcType=INTEGER}, #{hr,jdbcType=INTEGER}, #{rr,jdbcType=INTEGER}, 
+      #{movementLevel,jdbcType=INTEGER}, #{movementIndex,jdbcType=INTEGER}, #{restInLevel,jdbcType=INTEGER}, 
+      #{timeInBed,jdbcType=INTEGER}, #{turnCountup,jdbcType=INTEGER}, #{inBed,jdbcType=INTEGER}, 
+      #{signalQuality,jdbcType=INTEGER}, #{bexCharging,jdbcType=INTEGER}, #{alertMessage,jdbcType=VARCHAR}, 
+      #{hrAlert,jdbcType=INTEGER}, #{rrAlert,jdbcType=INTEGER}, #{moveAlert,jdbcType=INTEGER}, 
+      #{turnoverAlert,jdbcType=INTEGER}, #{notInbedAlert,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{turnoverCount,jdbcType=INTEGER}, #{notInbedCount,jdbcType=INTEGER}, 
+      #{isconnect,jdbcType=INTEGER})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.lachesis.windranger.ldm.dbmodel.LdmEqpPatientReadingRt" >
+    update ldm_eqp_patient_reading_rt
+    set eqp_mac = #{eqpMac,jdbcType=VARCHAR},
+      sensorport = #{sensorport,jdbcType=VARCHAR},
+      sensor_type = #{sensorType,jdbcType=INTEGER},
+      hr = #{hr,jdbcType=INTEGER},
+      rr = #{rr,jdbcType=INTEGER},
+      movement_level = #{movementLevel,jdbcType=INTEGER},
+      movement_index = #{movementIndex,jdbcType=INTEGER},
+      rest_in_level = #{restInLevel,jdbcType=INTEGER},
+      time_in_bed = #{timeInBed,jdbcType=INTEGER},
+      turn_countup = #{turnCountup,jdbcType=INTEGER},
+      in_bed = #{inBed,jdbcType=INTEGER},
+      signal_quality = #{signalQuality,jdbcType=INTEGER},
+      bex_charging = #{bexCharging,jdbcType=INTEGER},
+      alert_message = #{alertMessage,jdbcType=VARCHAR},
+      hr_alert = #{hrAlert,jdbcType=INTEGER},
+      rr_alert = #{rrAlert,jdbcType=INTEGER},
+      move_alert = #{moveAlert,jdbcType=INTEGER},
+      turnover_alert = #{turnoverAlert,jdbcType=INTEGER},
+      not_inbed_alert = #{notInbedAlert,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      turnover_count = #{turnoverCount,jdbcType=INTEGER},
+      not_inbed_count = #{notInbedCount,jdbcType=INTEGER},
+      isconnect = #{isconnect,jdbcType=INTEGER}
+    where seq_id = #{seqId,jdbcType=BIGINT}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select seq_id, eqp_mac, sensorport, sensor_type, hr, rr, movement_level, movement_index, 
+    rest_in_level, time_in_bed, turn_countup, in_bed, signal_quality, bex_charging, alert_message, 
+    hr_alert, rr_alert, move_alert, turnover_alert, not_inbed_alert, create_time, update_time, 
+    turnover_count, not_inbed_count, isconnect
+    from ldm_eqp_patient_reading_rt
+    where seq_id = #{seqId,jdbcType=BIGINT}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select seq_id, eqp_mac, sensorport, sensor_type, hr, rr, movement_level, movement_index, 
+    rest_in_level, time_in_bed, turn_countup, in_bed, signal_quality, bex_charging, alert_message, 
+    hr_alert, rr_alert, move_alert, turnover_alert, not_inbed_alert, create_time, update_time, 
+    turnover_count, not_inbed_count, isconnect
+    from ldm_eqp_patient_reading_rt
+  </select>
+  <delete id="removeKeysWithSession" parameterType="java.util.List" >
+    delete from ldm_eqp_patient_reading_rt where seq_id IN <foreach close=")" collection="list" index="index" item="item" open="(" separator=","> #{item} </foreach>
+  </delete>
+  <delete id="deleteByBean" parameterType="java.lang.Long" >
+    delete from ldm_eqp_patient_reading_rt where 1=1 
+    <if test="seqId!=null" >
+      and seq_id = #{seqId,jdbcType=BIGINT}
+    </if>
+    <if test="eqpMac!=null" >
+      and eqp_mac = #{eqpMac,jdbcType=VARCHAR}
+    </if>
+    <if test="sensorport!=null" >
+      and sensorport = #{sensorport,jdbcType=VARCHAR}
+    </if>
+    <if test="sensorType!=null" >
+      and sensor_type = #{sensorType,jdbcType=INTEGER}
+    </if>
+    <if test="hr!=null" >
+      and hr = #{hr,jdbcType=INTEGER}
+    </if>
+    <if test="rr!=null" >
+      and rr = #{rr,jdbcType=INTEGER}
+    </if>
+    <if test="movementLevel!=null" >
+      and movement_level = #{movementLevel,jdbcType=INTEGER}
+    </if>
+    <if test="movementIndex!=null" >
+      and movement_index = #{movementIndex,jdbcType=INTEGER}
+    </if>
+    <if test="restInLevel!=null" >
+      and rest_in_level = #{restInLevel,jdbcType=INTEGER}
+    </if>
+    <if test="timeInBed!=null" >
+      and time_in_bed = #{timeInBed,jdbcType=INTEGER}
+    </if>
+    <if test="turnCountup!=null" >
+      and turn_countup = #{turnCountup,jdbcType=INTEGER}
+    </if>
+    <if test="inBed!=null" >
+      and in_bed = #{inBed,jdbcType=INTEGER}
+    </if>
+    <if test="signalQuality!=null" >
+      and signal_quality = #{signalQuality,jdbcType=INTEGER}
+    </if>
+    <if test="bexCharging!=null" >
+      and bex_charging = #{bexCharging,jdbcType=INTEGER}
+    </if>
+    <if test="alertMessage!=null" >
+      and alert_message = #{alertMessage,jdbcType=VARCHAR}
+    </if>
+    <if test="hrAlert!=null" >
+      and hr_alert = #{hrAlert,jdbcType=INTEGER}
+    </if>
+    <if test="rrAlert!=null" >
+      and rr_alert = #{rrAlert,jdbcType=INTEGER}
+    </if>
+    <if test="moveAlert!=null" >
+      and move_alert = #{moveAlert,jdbcType=INTEGER}
+    </if>
+    <if test="turnoverAlert!=null" >
+      and turnover_alert = #{turnoverAlert,jdbcType=INTEGER}
+    </if>
+    <if test="notInbedAlert!=null" >
+      and not_inbed_alert = #{notInbedAlert,jdbcType=INTEGER}
+    </if>
+    <if test="createTime!=null" >
+      and create_time = #{createTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="updateTime!=null" >
+      and update_time = #{updateTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="turnoverCount!=null" >
+      and turnover_count = #{turnoverCount,jdbcType=INTEGER}
+    </if>
+    <if test="notInbedCount!=null" >
+      and not_inbed_count = #{notInbedCount,jdbcType=INTEGER}
+    </if>
+    <if test="isconnect!=null" >
+      and isconnect = #{isconnect,jdbcType=INTEGER}
+    </if>
+  </delete>
+  <insert parameterType="com.lachesis.windranger.ldm.dbmodel.LdmEqpPatientReadingRt" id="insertAndReturnKey" keyProperty="seqId" useGeneratedKeys="true" >
+    insert into ldm_eqp_patient_reading_rt (seq_id, eqp_mac, sensorport, 
+      sensor_type, hr, rr, 
+      movement_level, movement_index, rest_in_level, 
+      time_in_bed, turn_countup, in_bed, 
+      signal_quality, bex_charging, alert_message, 
+      hr_alert, rr_alert, move_alert, 
+      turnover_alert, not_inbed_alert, create_time, 
+      update_time, turnover_count, not_inbed_count, 
+      isconnect)
+    values (#{seqId,jdbcType=BIGINT}, #{eqpMac,jdbcType=VARCHAR}, #{sensorport,jdbcType=VARCHAR}, 
+      #{sensorType,jdbcType=INTEGER}, #{hr,jdbcType=INTEGER}, #{rr,jdbcType=INTEGER}, 
+      #{movementLevel,jdbcType=INTEGER}, #{movementIndex,jdbcType=INTEGER}, #{restInLevel,jdbcType=INTEGER}, 
+      #{timeInBed,jdbcType=INTEGER}, #{turnCountup,jdbcType=INTEGER}, #{inBed,jdbcType=INTEGER}, 
+      #{signalQuality,jdbcType=INTEGER}, #{bexCharging,jdbcType=INTEGER}, #{alertMessage,jdbcType=VARCHAR}, 
+      #{hrAlert,jdbcType=INTEGER}, #{rrAlert,jdbcType=INTEGER}, #{moveAlert,jdbcType=INTEGER}, 
+      #{turnoverAlert,jdbcType=INTEGER}, #{notInbedAlert,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{turnoverCount,jdbcType=INTEGER}, #{notInbedCount,jdbcType=INTEGER}, 
+      #{isconnect,jdbcType=INTEGER})
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.lachesis.windranger.ldm.dbmodel.LdmEqpPatientReadingRt" >
+    update ldm_eqp_patient_reading_rt set
+    <trim suffixOverrides="," >
+      <if test="eqpMac != null" >
+        eqp_mac = #{eqpMac,jdbcType=VARCHAR},
+      </if>
+      <if test="sensorport != null" >
+        sensorport = #{sensorport,jdbcType=VARCHAR},
+      </if>
+      <if test="sensorType != null" >
+        sensor_type = #{sensorType,jdbcType=INTEGER},
+      </if>
+      <if test="hr != null" >
+        hr = #{hr,jdbcType=INTEGER},
+      </if>
+      <if test="rr != null" >
+        rr = #{rr,jdbcType=INTEGER},
+      </if>
+      <if test="movementLevel != null" >
+        movement_level = #{movementLevel,jdbcType=INTEGER},
+      </if>
+      <if test="movementIndex != null" >
+        movement_index = #{movementIndex,jdbcType=INTEGER},
+      </if>
+      <if test="restInLevel != null" >
+        rest_in_level = #{restInLevel,jdbcType=INTEGER},
+      </if>
+      <if test="timeInBed != null" >
+        time_in_bed = #{timeInBed,jdbcType=INTEGER},
+      </if>
+      <if test="turnCountup != null" >
+        turn_countup = #{turnCountup,jdbcType=INTEGER},
+      </if>
+      <if test="inBed != null" >
+        in_bed = #{inBed,jdbcType=INTEGER},
+      </if>
+      <if test="signalQuality != null" >
+        signal_quality = #{signalQuality,jdbcType=INTEGER},
+      </if>
+      <if test="bexCharging != null" >
+        bex_charging = #{bexCharging,jdbcType=INTEGER},
+      </if>
+      <if test="alertMessage != null" >
+        alert_message = #{alertMessage,jdbcType=VARCHAR},
+      </if>
+      <if test="hrAlert != null" >
+        hr_alert = #{hrAlert,jdbcType=INTEGER},
+      </if>
+      <if test="rrAlert != null" >
+        rr_alert = #{rrAlert,jdbcType=INTEGER},
+      </if>
+      <if test="moveAlert != null" >
+        move_alert = #{moveAlert,jdbcType=INTEGER},
+      </if>
+      <if test="turnoverAlert != null" >
+        turnover_alert = #{turnoverAlert,jdbcType=INTEGER},
+      </if>
+      <if test="notInbedAlert != null" >
+        not_inbed_alert = #{notInbedAlert,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="turnoverCount != null" >
+        turnover_count = #{turnoverCount,jdbcType=INTEGER},
+      </if>
+      <if test="notInbedCount != null" >
+        not_inbed_count = #{notInbedCount,jdbcType=INTEGER},
+      </if>
+      <if test="isconnect != null" >
+        isconnect = #{isconnect,jdbcType=INTEGER}
+      </if>
+    </trim>
+     where seq_id = #{seqId,jdbcType=BIGINT}
+  </update>
+  <select id="selectByBean" resultMap="BaseResultMap" parameterType="com.lachesis.windranger.ldm.dbmodel.LdmEqpPatientReadingRt" >
+    select * from ldm_eqp_patient_reading_rt where 1=1 
+    <if test="seqId!=null" >
+      and seq_id = #{seqId,jdbcType=BIGINT}
+    </if>
+    <if test="eqpMac!=null" >
+      and eqp_mac = #{eqpMac,jdbcType=VARCHAR}
+    </if>
+    <if test="sensorport!=null" >
+      and sensorport = #{sensorport,jdbcType=VARCHAR}
+    </if>
+    <if test="sensorType!=null" >
+      and sensor_type = #{sensorType,jdbcType=INTEGER}
+    </if>
+    <if test="hr!=null" >
+      and hr = #{hr,jdbcType=INTEGER}
+    </if>
+    <if test="rr!=null" >
+      and rr = #{rr,jdbcType=INTEGER}
+    </if>
+    <if test="movementLevel!=null" >
+      and movement_level = #{movementLevel,jdbcType=INTEGER}
+    </if>
+    <if test="movementIndex!=null" >
+      and movement_index = #{movementIndex,jdbcType=INTEGER}
+    </if>
+    <if test="restInLevel!=null" >
+      and rest_in_level = #{restInLevel,jdbcType=INTEGER}
+    </if>
+    <if test="timeInBed!=null" >
+      and time_in_bed = #{timeInBed,jdbcType=INTEGER}
+    </if>
+    <if test="turnCountup!=null" >
+      and turn_countup = #{turnCountup,jdbcType=INTEGER}
+    </if>
+    <if test="inBed!=null" >
+      and in_bed = #{inBed,jdbcType=INTEGER}
+    </if>
+    <if test="signalQuality!=null" >
+      and signal_quality = #{signalQuality,jdbcType=INTEGER}
+    </if>
+    <if test="bexCharging!=null" >
+      and bex_charging = #{bexCharging,jdbcType=INTEGER}
+    </if>
+    <if test="alertMessage!=null" >
+      and alert_message = #{alertMessage,jdbcType=VARCHAR}
+    </if>
+    <if test="hrAlert!=null" >
+      and hr_alert = #{hrAlert,jdbcType=INTEGER}
+    </if>
+    <if test="rrAlert!=null" >
+      and rr_alert = #{rrAlert,jdbcType=INTEGER}
+    </if>
+    <if test="moveAlert!=null" >
+      and move_alert = #{moveAlert,jdbcType=INTEGER}
+    </if>
+    <if test="turnoverAlert!=null" >
+      and turnover_alert = #{turnoverAlert,jdbcType=INTEGER}
+    </if>
+    <if test="notInbedAlert!=null" >
+      and not_inbed_alert = #{notInbedAlert,jdbcType=INTEGER}
+    </if>
+    <if test="createTime!=null" >
+      and create_time = #{createTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="updateTime!=null" >
+      and update_time = #{updateTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="turnoverCount!=null" >
+      and turnover_count = #{turnoverCount,jdbcType=INTEGER}
+    </if>
+    <if test="notInbedCount!=null" >
+      and not_inbed_count = #{notInbedCount,jdbcType=INTEGER}
+    </if>
+    <if test="isconnect!=null" >
+      and isconnect = #{isconnect,jdbcType=INTEGER}
+    </if>
+  </select>
+  <select id="countByBean" resultType="int" parameterType="com.lachesis.windranger.ldm.dbmodel.LdmEqpPatientReadingRt" >
+    select count(0) from ldm_eqp_patient_reading_rt where 1=1 
+    <if test="seqId!=null" >
+      and seq_id = #{seqId,jdbcType=BIGINT}
+    </if>
+    <if test="eqpMac!=null" >
+      and eqp_mac = #{eqpMac,jdbcType=VARCHAR}
+    </if>
+    <if test="sensorport!=null" >
+      and sensorport = #{sensorport,jdbcType=VARCHAR}
+    </if>
+    <if test="sensorType!=null" >
+      and sensor_type = #{sensorType,jdbcType=INTEGER}
+    </if>
+    <if test="hr!=null" >
+      and hr = #{hr,jdbcType=INTEGER}
+    </if>
+    <if test="rr!=null" >
+      and rr = #{rr,jdbcType=INTEGER}
+    </if>
+    <if test="movementLevel!=null" >
+      and movement_level = #{movementLevel,jdbcType=INTEGER}
+    </if>
+    <if test="movementIndex!=null" >
+      and movement_index = #{movementIndex,jdbcType=INTEGER}
+    </if>
+    <if test="restInLevel!=null" >
+      and rest_in_level = #{restInLevel,jdbcType=INTEGER}
+    </if>
+    <if test="timeInBed!=null" >
+      and time_in_bed = #{timeInBed,jdbcType=INTEGER}
+    </if>
+    <if test="turnCountup!=null" >
+      and turn_countup = #{turnCountup,jdbcType=INTEGER}
+    </if>
+    <if test="inBed!=null" >
+      and in_bed = #{inBed,jdbcType=INTEGER}
+    </if>
+    <if test="signalQuality!=null" >
+      and signal_quality = #{signalQuality,jdbcType=INTEGER}
+    </if>
+    <if test="bexCharging!=null" >
+      and bex_charging = #{bexCharging,jdbcType=INTEGER}
+    </if>
+    <if test="alertMessage!=null" >
+      and alert_message = #{alertMessage,jdbcType=VARCHAR}
+    </if>
+    <if test="hrAlert!=null" >
+      and hr_alert = #{hrAlert,jdbcType=INTEGER}
+    </if>
+    <if test="rrAlert!=null" >
+      and rr_alert = #{rrAlert,jdbcType=INTEGER}
+    </if>
+    <if test="moveAlert!=null" >
+      and move_alert = #{moveAlert,jdbcType=INTEGER}
+    </if>
+    <if test="turnoverAlert!=null" >
+      and turnover_alert = #{turnoverAlert,jdbcType=INTEGER}
+    </if>
+    <if test="notInbedAlert!=null" >
+      and not_inbed_alert = #{notInbedAlert,jdbcType=INTEGER}
+    </if>
+    <if test="createTime!=null" >
+      and create_time = #{createTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="updateTime!=null" >
+      and update_time = #{updateTime,jdbcType=TIMESTAMP}
+    </if>
+    <if test="turnoverCount!=null" >
+      and turnover_count = #{turnoverCount,jdbcType=INTEGER}
+    </if>
+    <if test="notInbedCount!=null" >
+      and not_inbed_count = #{notInbedCount,jdbcType=INTEGER}
+    </if>
+    <if test="isconnect!=null" >
+      and isconnect = #{isconnect,jdbcType=INTEGER}
+    </if>
+  </select>
+</mapper>
